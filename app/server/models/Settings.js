@@ -39,6 +39,9 @@ var schema = new mongoose.Schema({
   },
   allowMinors: {
     type: Boolean
+  },
+  importFromUrl: {
+    type: String
   }
 });
 

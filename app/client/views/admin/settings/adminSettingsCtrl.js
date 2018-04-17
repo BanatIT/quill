@@ -6,6 +6,7 @@ angular.module('reg')
     function($scope, $sce, SettingsService){
 
       $scope.settings = {};
+      debugger;
       SettingsService
         .getPublicSettings()
         .success(function(settings){
@@ -101,13 +102,23 @@ angular.module('reg')
 
       $scope.updateConfirmationTime = function(){
         var confirmBy = cleanDate($scope.settings.timeConfirm).getTime();
-
         SettingsService
           .updateConfirmationTime(confirmBy)
           .success(function(settings){
             updateSettings(settings);
             swal("Sounds good!", "Confirmation Date Updated", "success");
           });
+      };
+
+      // Import from URL -------------------------------
+      $scope.import = function() {
+        var url = $scope.settings.importFromUrl;
+        SettingsService
+            .import(url)
+            .success(function (settings) {
+                updateSettings(settings);
+                swal("Sounds good!", "imp Date Updated", "success");
+            })
       };
 
       // Acceptance / Confirmation Text ----------------

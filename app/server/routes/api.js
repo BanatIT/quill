@@ -302,6 +302,10 @@ module.exports = function(router) {
     SettingsController.updateField('waitlistText', text, defaultResponse(req, res));
   });
 
+  router.put('/settings/import', isAdmin, function (req, res) {
+    SettingsController.importFromUrl(defaultResponse(req, res));
+  });
+
   /**
    * Update the acceptance text.
    * body: {
