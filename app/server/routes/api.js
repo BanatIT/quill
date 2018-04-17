@@ -303,7 +303,8 @@ module.exports = function(router) {
   });
 
   router.put('/settings/import', isAdmin, function (req, res) {
-    SettingsController.importFromUrl(defaultResponse(req, res));
+    var url = req.body.url;
+    SettingsController.importFromUrl(url, defaultResponse(req, res));
   });
 
   /**

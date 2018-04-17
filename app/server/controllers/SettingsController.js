@@ -83,8 +83,17 @@ SettingsController.getRegistrationTimes = function(callback){
 /**
  * Imports user data from URL
  */
-SettingsController.importFromUrl = function (callback){
-    Settings.getPublicSettings(callback);
+SettingsController.importFromUrl = function (url, callback){
+    var updatedUrl = {};
+
+    if(url){
+        updatedUrl.importFromUrl = url;
+    }
+
+    Settings
+        .findOneAndUpdate({},{
+            $set: updatedUrl
+        }, {new: true}, callback);
 };
 
 /**
