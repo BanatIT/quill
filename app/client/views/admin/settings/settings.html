@@ -127,6 +127,17 @@ class="ui green segment">
               <label>Allow minors</label>
           </div>
         </div>
+        <div class="field">
+          <div class="ui toggle checkbox">
+            <input
+                    type="checkbox"
+                    name="allowRegistration"
+                    ng-class="{true: 'checked', false: ''}[settings.allowRegistration]"
+                    ng-model="settings.allowRegistration"
+                    ng-change="updateAllowRegistration()">
+            <label>Allow registration</label>
+          </div>
+        </div>
       </div>
     </div>
   </div>

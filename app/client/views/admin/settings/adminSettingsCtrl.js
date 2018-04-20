@@ -37,6 +37,17 @@ angular.module('reg')
           });
       };
 
+        $scope.updateAllowRegistration = function () {
+            SettingsService
+                .updateAllowRegistration($scope.settings.allowRegistration)
+                .success(function (data) {
+                    $scope.settings.allowRegistration = data.allowRegistration;
+                    const successText = $scope.settings.allowRegistration ?
+                        "Registration is now open." :
+                        "Registration is now closed."
+                    swal("Looks good!", successText, "success");
+                });
+        };
       // Whitelist --------------------------------------
 
       SettingsService

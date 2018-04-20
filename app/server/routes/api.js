@@ -390,4 +390,16 @@ module.exports = function(router) {
     SettingsController.updateField('allowMinors', allowMinors, defaultResponse(req, res));
   });
 
+  /**
+   * [ADMIN ONLY]
+   * {
+   *   allowRegistration: Boolean
+   * }
+   * res: Settings
+   *
+   */
+  router.put('/settings/registration', isAdmin, function(req, res){
+    var allowRegistration = req.body.allowRegistration;
+    SettingsController.updateField('allowRegistration', allowRegistration, defaultResponse(req, res));
+  });
 };

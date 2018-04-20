@@ -40,6 +40,9 @@ var schema = new mongoose.Schema({
   allowMinors: {
     type: Boolean
   },
+  allowRegistration: {
+    type: Boolean
+  },
   importFromUrl: {
     type: String
   }
