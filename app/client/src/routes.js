@@ -165,6 +165,11 @@ angular.module('reg')
         data: {
           requireLogin: false
         }
+      })
+      .state('app.faq', {
+        url: "/faq",
+        templateUrl: "views/faq/faq.html",
+        controller: 'FAQCtrl'
       });
 
     $locationProvider.html5Mode({

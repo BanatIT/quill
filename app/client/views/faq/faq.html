@@ -1,0 +1,26 @@
+<div id="faq" class="page">
+    <div class="divided title">
+        FAQ
+    </div>
+    <div class="ui stackable page grid">
+        <div class="ui fluid search">
+            <div class="ui icon input ">
+                <input class="prompt" type="text" placeholder="Search faq..." ng-model="query">
+                <i class="search icon"></i>
+            </div>
+            <div class="results"></div>
+        </div>
+
+        <div class="ui items">
+            <div class="item" ng-repeat="faqQuestion in faqList | filter:query">
+                <div class="content">
+                    <a class="header">{{faqQuestion.question}}</a>
+                    <div class="description">
+                        <p>{{faqQuestion.answer}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
