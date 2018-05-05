@@ -1,5 +1,6 @@
 var UserController = require('../controllers/UserController');
 var SettingsController = require('../controllers/SettingsController');
+var TeamController = require('../controllers/TeamController');
 
 var request = require('request');
 
@@ -271,6 +272,35 @@ module.exports = function(router) {
     UserController.checkOutById(id, user, defaultResponse(req, res));
   });
 
+
+  // ---------------------------------------------
+  // Teams
+  // ---------------------------------------------
+
+  /**
+   * Get all registered teams
+   */
+  router.get('/teams', function(req, res){
+    TeamController.getTeams(defaultResponse(req, res));
+  });
+
+  /**
+   * get team by code
+   */
+  router.get('/teams/:code', function(req, res){
+    var code = req.params.code;
+    TeamController.getByCode(code, defaultResponse(req, res));
+  });
+
+  /**
+   * create team
+   */
+  router.post('/teams', function (req, res) {
+    var team = req.body.team;
+    var userId = req.body.userId;
+
+    TeamController.createTeam(team, userId, defaultResponse(req, res));
+  });
 
   // ---------------------------------------------
   // Settings [ADMIN ONLY!]

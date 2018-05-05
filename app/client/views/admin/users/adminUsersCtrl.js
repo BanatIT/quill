@@ -35,6 +35,7 @@ angular.module('reg')
       UserService
         .getPage($stateParams.page, $stateParams.size, $stateParams.query)
         .success(function(data){
+          console.log(data);
           updatePage(data);
         });
 
