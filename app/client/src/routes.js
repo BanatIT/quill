@@ -170,6 +170,11 @@ angular.module('reg')
         url: "/faq",
         templateUrl: "views/faq/faq.html",
         controller: 'FAQCtrl'
+      })
+      .state('app.map', {
+        url: "/map",
+        templateUrl: "views/map/map.html",
+        controller: 'MapCtrl'
       });
 
     $locationProvider.html5Mode({
