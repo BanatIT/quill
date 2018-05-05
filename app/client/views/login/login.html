@@ -1,97 +1,126 @@
 <div id="login">
   <div class="container">
-    <div class="content">
-      <div class="ui segment">
+    <div class="ui stackable two column grid">
+      <div class="column ">
+        <div class="content">
+        <div class="ui segment">
 
-        <div class="logo">
-          <img src="assets/images/logo-color.svg">
-        </div>
-
-        <div class="ui divider"></div>
-
-        <div class="ui small error message"
-             ng-show="error">
-          {{error}}
-        </div>
-
-        <div ng-show="loginState === 'login'">
-          <div class="ui login-password form">
-            <form ng-submit="login()">
-              <div class="field">
-                <label> Email</label>
-                <input type="email"
-                       id='email'
-                       placeholder="foo@bar.edu"
-                       ng-model="email">
-              </div>
-              <div class="field">
-                <label> Password</label>
-                <input type="password"
-                       id='password'
-                       placeholder="Password (at least 6 characters)"
-                       ng-model="password" required>
-              </div>
-              <div class="field">
-                <button id="login-password"
-                        type="submit"
-                        class="fluid ui login button">
-                        Login
-                </button>
-              </div>
-            </form>
+          <div class="logo">
+            <img src="assets/images/logo-color.svg">
           </div>
 
-          <div class="ui form" ng-show="regIsOpen">
-            <div class="ui divider"></div>
-            <div class="field">
-              <button id="register"
-                      type="submit"
-                      class="fluid ui register button"
-                      ng-click="register()">
-                      Register
-              </button>
+          <div class="ui divider"></div>
+
+          <div class="ui small error message"
+               ng-show="error">
+            {{error}}
+          </div>
+
+          <div ng-show="loginState === 'login'">
+            <div class="ui login-password form">
+              <form ng-submit="login()">
+                <div class="field">
+                  <label> Email</label>
+                  <input type="email"
+                         id='email'
+                         placeholder="foo@bar.edu"
+                         ng-model="email">
+                </div>
+                <div class="field">
+                  <label> Password</label>
+                  <input type="password"
+                         id='password'
+                         placeholder="Password (at least 6 characters)"
+                         ng-model="password" required>
+                </div>
+                <div class="field">
+                  <button id="login-password"
+                          type="submit"
+                          class="fluid ui login button">
+                    Login
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <div class="ui form" ng-show="regIsOpen">
+              <div class="ui divider"></div>
+              <div class="field">
+                <button id="register"
+                        type="submit"
+                        class="fluid ui register button"
+                        ng-click="register()">
+                  Register
+                </button>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div ng-show="loginState === 'forgot'">
-          <div class="ui forgot-password form">
-            <form ng-submit="sendResetEmail()">
-              <div class="field">
-                <label> Email</label>
-                <input type="email"
-                       id='email'
-                       placeholder="foo@bar.edu"
-                       ng-model="email">
-              </div>
-              <div class="field">
-                <button id="forgot-password"
-                        type="submit"
-                        class="fluid ui login button">
-                        Send Reset Email
-                </button>
-              </div>
-            </form>
+          <div ng-show="loginState === 'forgot'">
+            <div class="ui forgot-password form">
+              <form ng-submit="sendResetEmail()">
+                <div class="field">
+                  <label> Email</label>
+                  <input type="email"
+                         id='email'
+                         placeholder="foo@bar.edu"
+                         ng-model="email">
+                </div>
+                <div class="field">
+                  <button id="forgot-password"
+                          type="submit"
+                          class="fluid ui login button">
+                    Send Reset Email
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="ui divider"></div>
+
+          <div ng-show="loginState === 'login'" class="forgot">
+            <a href="#" ng-click="setLoginState('forgot')">
+              Forgot Password?
+            </a>
+          </div>
+
+          <div ng-show="loginState === 'forgot'" class="forgot">
+            <a href="#" ng-click="setLoginState('login')">
+              {{regIsOpen ? 'Login or Register' : 'Login'}}
+            </a>
+          </div>
+
+
+        </div>
+      </div></div>
+      <div class="column">
+        <div class="content">
+          <div class="ui segment">
+            <h3>How to login?</h3>
+            <div class="ui divider"></div>
+            <p>You can find the credentials on your ticket. Please use the email address and the secret key as shown in the image bellow.</p>
+            <a href="#" class="ticket-open-modal">
+            <img class="image" src="assets/images/ticket_credentials_sample.png">
+            Click to enlarge</a>
+            </div>
+        </div>
+        <div class="ui modal ticket">
+          <div class="header">Ticket sample</div>
+          <div class="content">
+            <img src="assets/images/ticket_credentials_sample.png" class="image">
+          </div>
+          <div class="actions">
+            <div class="ui positive right labeled icon button">Got it<i class="checkmark icon"></i></div>
           </div>
         </div>
-
-        <div class="ui divider"></div>
-
-        <div ng-show="loginState === 'login'" class="forgot">
-          <a href="#" ng-click="setLoginState('forgot')">
-            Forgot Password?
-          </a>
-        </div>
-
-        <div ng-show="loginState === 'forgot'" class="forgot">
-          <a href="#" ng-click="setLoginState('login')">
-            {{regIsOpen ? 'Login or Register' : 'Login'}}
-          </a>
-        </div>
-
-
       </div>
     </div>
 
   </div>
 </div>
+<script type="text/javascript">
+  $('.ticket-open-modal').click(function(){
+    $('.ui.modal.ticket').modal('show');
+  });
+</script>

@@ -36,7 +36,15 @@
     &.logo {
       opacity: 1;
       padding: 48px;
+
+      img {
+        max-height: 100px;
+        max-width: 100px;
+        margin: 0 auto;
+        display: block;
+      }
     }
+
 
   }
 
@@ -73,6 +81,11 @@
     .close {
       color: white;
       font-size: 2em;
+    }
+    .open {
+      color: white;
+      font-size: 2em;
+      padding: 0 8px;
     }
   }
 
