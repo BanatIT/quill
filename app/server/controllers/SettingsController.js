@@ -1,4 +1,5 @@
 var Settings = require('../models/Settings');
+var Import = require('../services/import');
 
 var SettingsController = {};
 
@@ -90,10 +91,13 @@ SettingsController.importFromUrl = function (url, callback){
         updatedUrl.importFromUrl = url;
     }
 
+    Import.importFromUrl(url);
+
     Settings
         .findOneAndUpdate({},{
             $set: updatedUrl
         }, {new: true}, callback);
+
 };
 
 /**
