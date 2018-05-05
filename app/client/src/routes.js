@@ -141,7 +141,12 @@ angular.module('reg')
       .state('app.admin.settings', {
         url: "/admin/settings",
         templateUrl: "views/admin/settings/settings.html",
-        controller: 'AdminSettingsCtrl',
+        controller: 'AdminSettingsCtrl'
+      })
+      .state('app.admin.notifications', {
+        url: "/admin/notifications",
+        templateUrl: "views/admin/notifications/notifications.html",
+        controller: 'AdminNotificationsCtrl'
       })
       .state('reset', {
         url: "/reset/:token",

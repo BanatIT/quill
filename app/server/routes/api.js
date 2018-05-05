@@ -1,6 +1,7 @@
 var UserController = require('../controllers/UserController');
 var SettingsController = require('../controllers/SettingsController');
 var TeamController = require('../controllers/TeamController');
+var NotificationController = require('../controllers/NotificationController');
 
 var request = require('request');
 
@@ -431,5 +432,30 @@ module.exports = function(router) {
   router.put('/settings/registration', isAdmin, function(req, res){
     var allowRegistration = req.body.allowRegistration;
     SettingsController.updateField('allowRegistration', allowRegistration, defaultResponse(req, res));
+  });
+
+
+
+
+  router.put('/notification/create', isAdmin, function(req, res){
+    var title = req.body.title;
+    var description = req.body.description;
+
+    NotificationController.createNotification(title, description,
+        function(err, notification){
+          if (err){
+            return res.status(400).send(err);
+          }
+          return res.json(notification);
+        });
+  });
+
+  /**
+   * [ADMIN ONLY]
+   *
+   * GET - Get all notifications
+   */
+  router.get('/notification', isAdmin, function(req, res){
+      NotificationController.getAll(defaultResponse(req, res));
   });
 };

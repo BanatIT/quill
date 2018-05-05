@@ -10,7 +10,8 @@ angular.module('reg')
     'UserService',
     'EVENT_INFO',
     'DASHBOARD',
-    function($rootScope, $scope, $sce, currentUser, settings, Utils, AuthService, UserService, EVENT_INFO, DASHBOARD){
+    'NotificationService',
+    function($rootScope, $scope, $sce, currentUser, settings, Utils, AuthService, UserService, EVENT_INFO, DASHBOARD, NotificationService){
       var Settings = settings.data;
       var user = currentUser.data;
       $scope.user = user;
@@ -105,4 +106,21 @@ angular.module('reg')
         });
       };
 
+      $scope.notifications = [];
+
+      populate();
+
+      function populate() {
+        NotificationService
+            .getAll()
+            .success(function (notifications) {
+              $scope.notifications = notifications;
+            });
+      }
+      $scope.fromNow = function(date){
+        return moment(date).fromNow();
+      };
+      $scope.tillThen = function(to){
+        return moment(Date.now()).to(to);
+      };
     }]);

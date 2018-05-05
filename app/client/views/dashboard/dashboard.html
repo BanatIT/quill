@@ -2,7 +2,66 @@
   <div class="divided title">
     Dashboard
   </div>
+  <div class="ui stackable centered page  grid form">
+    <div class="two column row">
+      <div class="column ui segment">
+        <div class="divided title">
+          Checklist
+        </div>
+        <div class="field">
+        <div class="ui checkbox">
+          <input type="checkbox" name="example">
+          <label>Checked IN</label>
+        </div>
+          </div>
+        <div class="field">
+        <div class="ui checkbox">
+          <input type="checkbox" name="example">
+          <label>Joined or created a team</label>
+        </div>
+          </div>
+        <div class="field">
+        <div class="ui checkbox">
+          <input type="checkbox" name="example">
+          <label>Create a project (what are you working on?)</label>
+        </div>
 
+          </div>
+        <div class="ui checkbox">
+          <input type="checkbox" name="example">
+          <label>Get coffee</label>
+        </div>
+      </div>
+      <div id="notification" class="column ui segment form">
+        <div class="divided title">
+          Notifications
+        </div>
+        <div class="ui divided list fixed-height-200">
+          <a class="item" ng-repeat="notification in notifications|limitTo:20">
+            <span class="small">{{ fromNow(notification.timestamp) }}</span>
+            <strong>{{ notification.title }}</strong><br>
+            {{ notification.description }}<br>
+          </a>
+
+        </div>
+      </div>
+    </div>
+    <div class="two column row form">
+      <div class="column ui segment">
+        <div class="divided title">
+          Time till jury starts
+        </div>
+     
+      </div>
+
+    <div class="column  ui segment">
+      <div class="divided title">
+        Time till presentations
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
   <div class="ui stackable centered page grid">
     <div class="column">
       <div class="ui status segment">

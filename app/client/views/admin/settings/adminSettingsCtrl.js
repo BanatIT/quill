@@ -6,7 +6,7 @@ angular.module('reg')
     function($scope, $sce, SettingsService){
 
       $scope.settings = {};
-      debugger;
+
       SettingsService
         .getPublicSettings()
         .success(function(settings){

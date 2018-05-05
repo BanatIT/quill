@@ -1,0 +1,25 @@
+#notification{
+  .label {
+    font-size: 10px;
+  }
+  .item {
+    color: $primary;
+    font-size: 12px;
+    line-height: 1.5;
+    strong {
+      font-size: 14px;
+    }
+    .small{
+      font-size: 10px;
+      float: right;
+    }
+    .header{
+      color: $primary;
+    }
+  }
+  .fixed-height-200{
+    max-height: 200px;
+    overflow-y: scroll;
+    padding: 8px;
+  }
+}

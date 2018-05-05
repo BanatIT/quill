@@ -1,0 +1,60 @@
+<div id="notification">
+<!--Import Data-->
+<div class="ui red segment">
+
+    <div class="column">
+        <div class="ui form">
+
+            <div class="ui header">
+                Add notification
+            </div>
+
+            <p>
+                This notification will be displayed on the users dashboard.
+            </p>
+
+            <div class="field">
+                <label>
+                    Title:
+                </label>
+                <input type="text" ng-model="notification.title">
+            </div>
+
+            <div class="field">
+                <label>
+                    Description:
+                </label>
+                <input type="text" ng-model="notification.description">
+            </div>
+
+            <div class="ui field">
+                <div
+                        class="ui green button"
+                        ng-click="createNotification()">
+                    Create
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Import Data-->
+<div class="ui green segment">
+
+    <div class="ui header">
+        Past notifications
+    </div>
+
+    <div class="column">
+        <div class="ui relaxed divided list">
+            <div class="item" ng-repeat="notification in notifications">
+                <i class="bullhorn blue middle aligned icon"></i>
+                <div class="content">
+                    <span class="header">{{notification.title}}</span>
+                    <div class="description"><div class="ui blue horizontal label">{{ fromNow(notification.timestamp) }}</div> {{notification.description}}</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
