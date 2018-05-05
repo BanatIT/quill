@@ -1,0 +1,33 @@
+#schedule {
+  .grid {
+    padding-left: 5%;
+    padding-right: 5%;
+    .title {
+      text-align: left;
+      span {
+        display: block;
+        font-size: 14px;
+      }
+      &:after{
+        width: auto;
+      }
+    }
+    .item {
+      color: #000;
+      border: 0;
+
+      strong{
+        display: block;
+        font-size:12px;
+        padding-left: 70px;
+        font-weight: 400;
+      }
+      &.red{
+        background: rgba(255,0,0,0.1);
+      }
+    }
+    .legend {
+
+    }
+  }
+}

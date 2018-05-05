@@ -175,6 +175,11 @@ angular.module('reg')
         url: "/map",
         templateUrl: "views/map/map.html",
         controller: 'MapCtrl'
+      })
+      .state('app.schedule', {
+        url: "/schedule",
+        templateUrl: "views/schedule/schedule.html",
+        controller: 'ScheduleCtrl'
       });
 
     $locationProvider.html5Mode({
