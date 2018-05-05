@@ -1,0 +1,109 @@
+[{
+  "question": "Who can attend?",
+  "answer": "Hackers, geeks, developers, designers, freelancers, employees, students, CoderDojo kids, basically any talented and creative individual with interest in IT."
+},
+  {
+    "question": "What am I going to find there?",
+    "answer": "A lot of mentors, experts from the IT industry & a wide group of volunteers to help you. Plus free food, drinks & swag."
+  },
+  {
+    "question": "If I can’t stay the whole 2 days can I still participate?",
+    "answer": "Yes."
+  },
+  {
+    "question": "Is there any food provided?",
+    "answer": "Definitely yes! We have a blood sugar level measuring protocol that we’ll strive to keep in the optimal range. Not with IV glucose, but with some sweet surprises along the way."
+  },
+  {
+    "question": "Can I sleep there?",
+    "answer": "Yup! We’ll have special sleeping areas prepared for you, but for maximum comfort, feel free to bring your own sleeping bag/mattress/pillow."
+  },
+  {
+    "question": "My question is not on this list. Who can I contact?",
+    "answer": "Contact us using our form or email us at contact@hacktm.ro. While at the event, just ask the guys & girls from the crew! They’ll be wearing special t-shirts, so you can spot them from afar!"
+  },
+  {
+    "question": "What does the ticket include?",
+    "answer": "It will provide you access to the event, food, beverages, an awesome HackTM t-shirt and swag. Not to mention the chance to win awesome prizes!"
+  },
+  {
+    "question": "How big should the teams be?",
+    "answer": "We are encouraging you to attend in teams of max 5 members, bwith the possibility of a 6th member, but only if he/she/it is a designer. However, if you are a lone ranger, do feel free to take a crack at it!"
+  },
+  {
+    "question": "What if I don’t have a team to sign up with?",
+    "answer": "If you don’t have a team, we can help you join one on the day of the event, at the latest. We’ll have a mixing pot where you can announce your availability and check others’ needs. Don’t get discouraged though, there’s plenty of time to find your tribe."
+  },
+  {
+    "question": "Can I use code written before the hackathon?",
+    "answer": "Only projects with fresh code are eligible for winning any prize. You can build on existing frameworks, however only your contribution will be judged."
+  },
+  {
+    "question": "Do I need to push my code to GitHub?",
+    "answer": "We strongly encourage it. You came here to show off, didn’t you?"
+  },
+  {
+    "question": "What can my team build?",
+    "answer": "This will be an open hackathon, so you can build whatever hardware or software project you can think of. We expect the most outrageous, exotic, impossible-­to-­classify, transformer-like ideas, so give it all you’ve got!"
+  },
+  {
+    "question": "Are we allowed to build on past projects?",
+    "answer": "It’s not what we are most fond of, but if you show us your project’s repo from the beginning of the event, we can admit your case. Take caution though: these type of projects might lose points with the judges."
+  },
+  {
+    "question": "What should I bring?",
+    "answer": "Laptop & charger are a must. You can add your preferred home slippers, headphones and sleeping bag. Please don’t leave your positive energy at home."
+  },
+  {
+    "question": "Will you have hardware equipment?",
+    "answer": "We’ll have extension cords and internet cables, but feel free to bring your own as well. "
+  },
+  {
+    "question": "Can I really develop whatever idea I want?",
+    "answer": "Yes! Yes! Yes! Actually not if it’s something immoral or if it’s offending or hurting people. In those cases, no, not really."
+  },
+  {
+    "question": "How should I prepare my pitch?",
+    "answer": "Everybody can pitch their idea on stage at the opening. You have 60 seconds on the dot to impress the audience and find the necessary team mates. If your team is already complete, you can skip the pitching and go straight to work. Do not pass Go, do not collect 200$."
+  },
+  {
+    "question": "Do I need to be physically at the location to participate?",
+    "answer": "Yes, because we like to see hordes of unleashed hackers under the same roof. Pretty sure you’ll like it too!"
+  },
+  {
+    "question": "What programming language can I use?",
+    "answer": "Whichever programming language you want. We’ll reward the participant proving he’s The Highlander of specific language or the first one that invalidates this singularity claim."
+  },
+  {
+    "question": "Does HackTM get to keep my code or idea?",
+    "answer": "Noup, we barely have the time to manage and implement our own ideas, so you’ll keep full ownership. We only want to make sure we have the bragging rights to mention that your empire started at our humble hackathon, when you’ll launch your IPO."
+  },
+  {
+    "question": "Can I work on an existing project?",
+    "answer": "You can work on whatever project you want, however only projects with fresh code are eligible for winning prizes. Using frameworks and stitching together 3rd party libraries is, of course, encouraged."
+  },
+  {
+    "question": "What are the criteria used for evaluating an application?",
+    "answer": "Beside sponsor prizes, you’ll get a chance at winning the Grand Prize! And now for the second time since its inception, HackTM participants will be able to vote for their favorite project! However, not just popularity counts. Our jury will give out points based on coolness/originality, complexity, completeness and UI/UX design. Make sure you ask the crew for more details!"
+  },
+  {
+    "question": "How can I vote for the Grand Prize?",
+    "answer": "You can vote for your favorite project with the badge received on registration. Use the code from your badge to cast your vote, and that will count as a point for the eligible projects, beside the points given by the jury."
+  },
+  {
+    "question": "Who will be on the jury?",
+    "answer": "Each sponsor prize, as well as the Grand Prize, will have a specific jury of experienced members appointed. They will talk to your team several times during the hackathon to find out as much as they can about your project."
+  },
+  {
+    "question": "What happens if I get stuck?",
+    "answer": "We’ll have mentors available to help you out and go further."
+  },
+  {
+    "question": "How do I know who’s a mentor?",
+    "answer": "On location, ask the gals and guys signaled as mentors (they’re geeky and roaming around the place, you’ll notice them). Online, send us an email or message on Facebook, we’ll reply ASAP."
+  },
+  {
+    "question": "What are the prizes?",
+    "answer": "The most valuable prize everyone will get is the knowledge gathered while participating at HackTM 2018. That said, the best projects will receive valuable sponsor prizes. We will also declare one Winner to rule them all at the end of the hackathon with a Grand Prize that values up to $$$$. We’ll announce the awards ASAP!"
+  }
+]
