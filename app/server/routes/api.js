@@ -65,6 +65,18 @@ module.exports = function(router) {
     });
   }
 
+  function getUserId(req, res) {
+    var token = getToken(req);
+
+    UserController.getByToken(token, function(err, user) {
+      if (err || !user) {
+        return res.status(500).send(err);
+      }
+
+      return user._id;
+    })
+  }
+
   /**
    * Default response to send an error and the data.
    * @param  {[type]} res [description]
@@ -293,13 +305,44 @@ module.exports = function(router) {
     TeamController.getByCode(code, defaultResponse(req, res));
   });
 
+
+  /**
+   * update team
+   */
+  router.post('/teams/:code', function (req, res){
+    var code = req.params.code;
+    var team = req.body.team;
+    var token = getToken(req);
+
+    // var userId;
+    UserController.getByToken(token, function(err, user){
+      if (user) {
+        TeamController.updateTeam(code, team, user._id.toString(), defaultResponse(req, res));
+      }
+    })
+
+  });
+
+
+  router.delete('/teams/:code', function (req, res){
+    var code = req.params.code;
+    var token = getToken(req);
+
+    // var userId;
+    UserController.getByToken(token, function(err, user){
+      if (user) {
+        TeamController.deleteTeam(code, user._id.toString(), defaultResponse(req, res));
+      }
+    })
+  });
+
+
   /**
    * create team
    */
   router.post('/teams', function (req, res) {
     var team = req.body.team;
     var userId = req.body.userId;
-
     TeamController.createTeam(team, userId, defaultResponse(req, res));
   });
 

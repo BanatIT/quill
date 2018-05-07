@@ -19,12 +19,17 @@ angular.module('reg')
 
       $scope.teams = []
 
-      TeamService.getAll().success(function(tems){
-        $scope.teams = tems;
-        console.log('tems',$scope.teams);
-      }).error(function(res){
-        $scope.error = res.message;
-      });
+      $scope.isOwner = false;
+
+
+      function _getAll(){
+        TeamService.getAll().success(function(tems){
+          $scope.teams = tems;
+        }).error(function(res){
+          $scope.error = res.message;
+        });
+      };
+      _getAll();
 
       function _populateTeammates() {
         UserService
@@ -33,13 +38,14 @@ angular.module('reg')
             $scope.error = null;
             $scope.teammates = users;
           });
-      }
+      };
 
       function _getTeam() {
         TeamService.get($scope.user.teamCode)
           .success(function(team){
-            $scope.user.teamCode
+            $scope.user.teamCode;
             $scope.team = team;
+            $scope.isOwner = $scope.user._id === team.owner;
           }).error(function(err){
           $scope.error = err.message;
         });
@@ -66,17 +72,18 @@ angular.module('reg')
 
       $scope.createTeam = function(){
         TeamService.createTeam($scope.team)
-          .success(function(team){
+          .success(function(response){
             $scope.error = null;
-            $scope.team = team;
-            $scope.user.teamCode = team._id;
+            $scope.team = response.team;
+            $scope.user.teamCode = response.team._id;
+            $scope.isOwner = true;
+            _populateTeammates();
+            _getAll();
           })
           .error(function(err){
             $scope.error = err.message;
           })
       };
-
-      // $scope.get
 
       $scope.leaveTeam = function(){
         UserService
@@ -87,9 +94,35 @@ angular.module('reg')
             $scope.teammates = [];
             $scope.team = {};
           })
-          .error(function(res){
-            $scope.error = res.data.message;
+          .error(function(err){
+            $scope.error = err.message;
           });
+      };
+
+      $scope.deleteTeam = function () {
+        TeamService.deteleTeam($scope.user.teamCode)
+          .success(function(){
+            $scope.error = null;
+            $scope.user.teamCode = null;
+            $scope.teammates = [];
+            $scope.team = {};
+            _getAll();
+          })
+          .error(function(err){
+            $scope.error = err.message;
+          })
+        ;
+      };
+
+      $scope.updateTeam = function (){
+        TeamService.updateTeam($scope.team)
+          .success(function(team){
+            $scope.team = team;
+          })
+          .error(function(err){
+            $scope.error =  err.message;
+          })
+
       };
 
     }]);

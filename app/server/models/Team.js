@@ -1,13 +1,6 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-    // code: {
-    //     type: String,
-    //     min: 0,
-    //     max: 140,
-    //     unique: true,
-    //     required: true
-    // },
     name: {
         type: String,
       required: true,
@@ -26,6 +19,10 @@ var schema = new mongoose.Schema({
     gavelScore: {
         type: Number,
         default: 0
+    },
+    owner: {
+        type: String,
+        required: true
     }
 
 });

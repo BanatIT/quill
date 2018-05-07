@@ -79,19 +79,29 @@
             </div>
           </div>
 
-          <div ng-show="user.teamCode" class="ui two column grid">
+          <div ng-show="user.teamCode && !isOwner">
+            <div class="field" >
+              <button
+                      class="ui fluid pink button"
+                      ng-click="leaveTeam()">
+                Leave Team
+              </button>
+            </div>
+          </div>
+
+          <div ng-show="user.teamCode && isOwner" class="ui two column grid">
             <div class="field column" >
               <button
                       class="ui fluid pink button"
-                      ng-click="joinTeam()">
+                      ng-click="updateTeam()">
                 Update Team
               </button>
             </div>
             <div class="field column" >
               <button
                       class="ui fluid red button"
-                      ng-click="leaveTeam()">
-                Leave Team
+                      ng-click="deleteTeam()">
+                Delete Team
               </button>
             </div>
 

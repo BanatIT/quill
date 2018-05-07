@@ -21,7 +21,17 @@ angular.module('reg')
           return $http.post(base, {
             team: team,
             userId: Session.getUserId()
-          })
+          });
+        },
+
+        deteleTeam: function(id) {
+          return $http.delete(base+id);
+        },
+
+        updateTeam: function (team) {
+          return $http.post(base + team._id.toString(), {
+            team: team
+          });
         }
       }
     }
