@@ -21,29 +21,29 @@
         "ADMIN_PASS": "party",
         "EMAIL_ADDRESS": {
             "description": "The email address that is included in the 'email us' link at the bottom of emails.",
-            "value": "team@example.com"
+            "value": "adrian@banatit.ro"
         },
         "HACKATHON_NAME": "Hackathon",
         "TWITTER_HANDLE": {
             "description": "Everything after https://twitter.com/",
-            "value": "hackathon"
+            "value": "hacktmro"
         },
         "FACEBOOK_HANDLE": {
             "description": "Everything after https://facebook.com/",
-            "value": "hackathon"
+            "value": "hacktm.ro"
         },
         "EMAIL_CONTACT": {
             "description": "Used to send verification, registration, and confirmation emails",
-            "value": "Hackathon Team <team@example.com>"
+            "value": "HackTM Team <team@example.com>"
         },
         "EMAIL_HOST": "smtp.gmail.com",
         "EMAIL_USER": "foo@bar.com",
         "EMAIL_PASS": "password",
         "EMAIL_PORT": "465",
-        "EMAIL_HEADER_IMAGE": "https://s3.amazonaws.com/hackmit-assets/Banner_600.jpg",
+        "EMAIL_HEADER_IMAGE": "https://scontent.ftsr1-2.fna.fbcdn.net/v/t31.0-8/28336020_1732582600134837_6528229698617741213_o.png?_nc_cat=0&oh=4fca87a138d0232486580b586f54a8c4&oe=5B9C9960",
         "TEAM_MAX_SIZE": {
             "description": "Limits the number of users that can join a team",
-            "value": "4"
+            "value": "6"
         },
         "SLACK_HOOK": {
             "description": "Used to send error messages to your Slack team when the API catches an error",
