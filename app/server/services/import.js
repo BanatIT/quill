@@ -76,10 +76,10 @@ controller.importFromUrl = function (url) {
           };
           var status = {
               completedProfile: true,
-              admitted: false,
+              admitted: true,
               confirmed: true,
               declined: false,
-              checkedIn: false
+              checkedIn: item.check_in.length > 0
           };
           var u = new User();
           u.ticketId = item.ticket_id;
