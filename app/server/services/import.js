@@ -8,6 +8,7 @@ controller.importFromUrl = function (url) {
        var data = JSON.parse(body);
 
        data.forEach(function (item){
+           
           var attendeeData = item.attendee_meta;
 
           if(!attendeeData){
