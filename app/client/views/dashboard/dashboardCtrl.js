@@ -15,9 +15,9 @@ angular.module('reg')
       var Settings = settings.data;
       var user = currentUser.data;
       $scope.user = user;
-      console.log($scope.user);
       $scope.timeClose = Utils.formatTime(Settings.timeClose);
       $scope.timeConfirm = Utils.formatTime(Settings.timeConfirm);
+      $scope.hasTeam = user.teamCode && user.teamCode.length > 0;
 
       $scope.DASHBOARD = DASHBOARD;
 
