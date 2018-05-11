@@ -83,7 +83,7 @@ controller.importFromUrl = function (url) {
           };
           var u = new User();
           u.ticketId = item.ticket_id;
-          u.email = _getValue(attendeeData, 'e-mail-address');
+          u.email = _getValue(attendeeData, 'e-mail-address').trim();
           u.password = User.generateHash(item.security_code);
           u.admin = false;
           u.timestamp = Date.now();
