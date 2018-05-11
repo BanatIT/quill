@@ -6,7 +6,7 @@ var Stats = require('../services/stats');
 
 var validator = require('validator');
 var moment = require('moment');
-
+var uuid = require('uuid/v4');
 var UserController = {};
 
 var maxTeamSize = process.env.TEAM_MAX_SIZE || 4;
@@ -153,6 +153,7 @@ UserController.createUser = function(email, password, callback) {
     var u = new User();
     u.email = email;
     u.password = User.generateHash(password);
+    u.ticketId = uuid();
     u.save(function(err){
       if (err){
         // Duplicate key error codes

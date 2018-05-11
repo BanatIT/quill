@@ -13,6 +13,7 @@ User
     if (!user){
       var u = new User();
       u.email = ADMIN_EMAIL;
+      u.ticketId = 'admin';
       u.password = User.generateHash(ADMIN_PASSWORD);
       u.admin = true;
       u.verified = true;
