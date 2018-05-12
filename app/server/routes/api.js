@@ -68,12 +68,14 @@ module.exports = function(router) {
   function getUserId(req, res) {
     var token = getToken(req);
 
-    UserController.getByToken(token, function(err, user) {
+    return UserController.getByToken(token, function(err, user) {
       if (err || !user) {
         return res.status(500).send(err);
       }
 
+
       return user._id;
+
     })
   }
 
@@ -341,9 +343,25 @@ module.exports = function(router) {
    * create team
    */
   router.post('/teams', function (req, res) {
-    var team = req.body.team;
-    var userId = req.body.userId;
-    TeamController.createTeam(team, userId, defaultResponse(req, res));
+      var team = req.body.team;
+      var userId = req.body.userId;
+      TeamController.createTeam(team, userId, defaultResponse(req, res));
+  });
+
+  router.get('/vote', function (req, res) {
+      UserController.getVoteCount(defaultResponse(req, res));
+  });
+
+  router.post('/vote', function (req, res) {
+      var teamId = req.body.teamId;
+      var token = getToken(req);
+
+      // var userId;
+      UserController.getByToken(token, function(err, user){
+        if(user && user) {
+            UserController.voteTeam(user, teamId, defaultResponse(req, res));
+        }
+      });
   });
 
   // ---------------------------------------------

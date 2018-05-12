@@ -232,6 +232,14 @@ var schema = new mongoose.Schema({
 
   status: status,
 
+  votedTeamId:  {
+    type: String,
+    min: 0,
+    max: 140,
+    required: true,
+    default: null
+  }
+
 });
 
 schema.set('toJSON', {
