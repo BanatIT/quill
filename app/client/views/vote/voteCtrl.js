@@ -16,7 +16,7 @@ angular.module('reg')
 
             $scope.castVote = castVote;
 
-            function buildFukingStupidSemanticUiProgressBar(){
+            function buildFuckingStupidSemanticUiProgressBar(){
                 var loops = 0;
                 var interval = setInterval(function () {
                     var elements = $('.vote-score');
@@ -59,7 +59,7 @@ angular.module('reg')
                                 $scope.canVote = false;
                                 $scope.ready = true;
                                 $scope.teams = teams.data;
-                                buildFukingStupidSemanticUiProgressBar();
+                                buildFuckingStupidSemanticUiProgressBar();
                             });
 
 
