@@ -51,7 +51,6 @@ angular.module('reg')
                                 var elements = $('.vote-score');
                                 if (elements.length === $scope.teams.length) {
                                     $('.vote-score').progress();
-                                    clearInterval(interval);
                                 }
                             }, 250);
 
