@@ -47,20 +47,15 @@ angular.module('reg')
                                 $scope.teams = teams.data;
                             });
 
+                            var loops = 0;
                             var interval = setInterval(function () {
                                 var elements = $('.vote-score');
                                 if (elements.length === $scope.teams.length) {
                                     $('.vote-score').progress();
-                                    // prea optimist
-                                    setTimeout(function () {
-                                        $('.vote-score').progress();
-                                    }, 100);
-                                    // mai sigur
-                                    setTimeout(function () {
-                                        $('.vote-score').progress();
-                                    }, 500);
-                                    // ma cac pe semantic UI
-                                    clearInterval(interval);
+                                    loops +=1;
+                                    if(loops > 10) {
+                                        clearInterval(interval);
+                                    }
                                 }
                             }, 250);
 
