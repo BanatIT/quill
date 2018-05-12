@@ -710,10 +710,11 @@ UserController.voteTeam = function (user, teamId, callback) {
                     new: false
                 },
                 callback);
+        }else {
+            return callback({
+                message: 'Voting not enabled'
+            });
         }
-        return callback({
-            message: 'Voting not enabled'
-        });
     });
 };
 

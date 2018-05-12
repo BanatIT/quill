@@ -23,6 +23,11 @@ var schema = new mongoose.Schema({
     owner: {
         type: String,
         required: true
+    },
+    totalScore: {
+        type: Number,
+        default: 0,
+        required: false
     }
 
 });

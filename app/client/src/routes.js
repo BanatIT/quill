@@ -189,7 +189,7 @@ angular.module('reg')
       .state('app.vote', {
           url: "/vote",
           templateUrl: "views/vote/vote.html",
-          controller: 'VoteCtrl '
+          controller: 'VoteCtrl'
       });
 
     $locationProvider.html5Mode({

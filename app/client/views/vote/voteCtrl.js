@@ -1,54 +1,73 @@
 angular.module('reg')
     .controller('VoteCtrl', [
         '$scope',
-        'currentUser',
-        'settings',
-        'Utils',
         'UserService',
         'VoteService',
         'SettingsService',
-        function ($scope, currentUser, settings, Utils, UserService, VoteService, SettingsService) {
+        function ($scope, UserService, VoteService, SettingsService) {
 
 
             $scope.ready = false;
             $scope.canVote = false;
             $scope.teams = [];
+            $scope.settings = {};
+            $scope.selectedTeam = {};
             loadVotes();
 
+            $scope.castVote = castVote;
+
+            function castVote() {
+                VoteService.castVote($scope.selectedTeam.id).then(function () {
+                    $scope.canVote = false;
+                });
+            }
 
             function loadVotes() {
 
                 UserService.getCurrentUser().then(function (res) {
 
-                    if (res.votedTeamId && res.votedTeamId.length > 0) {
+
+                    if (res.data.votedTeamId && res.data.votedTeamId.length > 0) {
                         $scope.ready = true;
                         $scope.canVote = false;
+                    } else {
+                        $scope.canVote = true;
                     }
 
-                    if($scope.canVote) {
 
-                        SettingsService.getPublicSettings().then(function (settings) {
-                            $scope.settings = settings;
+                    SettingsService.getPublicSettings().then(function (settings) {
+                        $scope.settings = settings.data;
+                        if ($scope.canVote) {
 
-                            if (settings.showVoteResults) {
+                            if ($scope.settings.showVoteResults) {
 
                                 VoteService.getVoteCount().then(function (teams) {
                                     $scope.canVote = true;
                                     $scope.ready = true;
-                                    $scope.teams = teams;
+                                    $scope.teams = teams.data;
                                 });
-                            } else if (settings.votingEnabled) {
+
+                                var interval = setInterval(function () {
+                                    var elements = $('.vote-score');
+                                    if (elements.length === $scope.teams.length) {
+                                        $('.vote-score').progress();
+                                        clearInterval(interval);
+                                    }
+                                }, 250);
+
+
+                            } else if ($scope.settings.votingEnabled) {
                                 VoteService.getAllTeamsEligibleForVote().then(function (teams) {
                                     $scope.canVote = true;
                                     $scope.ready = true;
-                                    $scope.teams = teams;
+                                    $scope.teams = teams.data;
                                 });
                             }
 
+                        }
 
-                        });
+                    });
 
-                    }
 
                 });
 

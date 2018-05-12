@@ -1,4 +1,4 @@
-<div id="team" class="page">
+<div id="map" class="page">
     <div class="divided title">
         {{settings.votingEnabled ? 'Vote your favorite team' : settings.showVoteResults ? 'Vote Results' : 'Voting is closed'}}
     </div>
@@ -15,7 +15,8 @@
                             <input
                                     type="radio"
                                     name="selectedTeam"
-                                    ng-model="selectedTeam">
+                                    value="{{team._id}}"
+                                    ng-model="selectedTeam.id">
                             <label>{{team.name}}</label>
                         </div>
                     </div>
@@ -24,12 +25,13 @@
                 <div class="ui divider"></div>
 
                 <div class="field">
-                    <div
+                    {{selectedTeam.id}}
+                    <button
                             class="ui green button"
-                            ng-disabled="!selectedTeam"
+                            ng-disabled="!selectedTeam.id"
                             ng-click="castVote()">
                         Vote Team
-                    </div>
+                    </button>
                 </div>
 
             </div>
@@ -45,9 +47,8 @@
                 <div class="ui list">
                     <div class="item" ng-repeat="team in teams | orderBy:'name'">
 
-                        <div class="ui progress success" ng-attr-data-value="{{team.totalScore}}" data-total="100" >
+                        <div class="ui progress teal vote-score" ng-attr-data-percent="{{team.totalScore}}" >
                             <div class="bar">
-                                <div class="progress"></div>
                             </div>
                             <div class="label">{{team.name}}</div>
                         </div>
@@ -57,6 +58,4 @@
         </div>
     </div>
 </div>
-
-
 </div>

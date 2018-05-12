@@ -1,5 +1,6 @@
 var Team = require('../models/Team');
 var User = require('../models/User');
+var Settings = require('../models/Settings');
 var UserController = require('./UserController');
 
 var TeamController = {};
@@ -146,7 +147,7 @@ TeamController.getVoteCount = function (callback) {
                         } else {
                             voteMap[user.votedTeamId] = 1;
                         }
-                        if(voteMap[user.votedTeamId]  > highestVoteScore){
+                        if(voteMap[user.votedTeamId] > highestVoteScore){
                             highestVoteScore = voteMap[user.votedTeamId];
                         }
                     }
@@ -162,11 +163,23 @@ TeamController.getVoteCount = function (callback) {
                         }
                     });
 
+                    if(maxGavelScore === 0){
+                        maxGavelScore = 1;
+                    }
+                    if(highestVoteScore === 0){
+                        highestVoteScore = 1;
+                    }
                     teams.forEach(function(team){
+                        var votesForTeam = voteMap[team._id];
+                        if(!votesForTeam){
+                            votesForTeam = 0;
+                        }
                         team.gavelScore = team.gavelScore / maxGavelScore;
-                        team.totalScore = team.gavelScore + (voteMap[team._id]/highestVoteScore);
+                        team.totalScore = team.gavelScore + (votesForTeam/highestVoteScore);
                         team.totalScore *= 100;
                     });
+
+
 
                     return callback(null,teams);
                 });

@@ -23,7 +23,7 @@ angular.module('reg')
       $scope.teams = [];
 
       $scope.isOwner = false;
-      $scope.isParticipant = participantType.indexOf($scope.user.ticketType) > -1;
+      $scope.isParticipant =true;
 
 
       function _getAll(){

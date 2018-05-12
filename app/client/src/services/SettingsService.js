@@ -58,15 +58,15 @@ angular.module('reg')
           allowRegistration: allowRegistration
         });
       },
-      updateShowVoteResult: function(showVoteResults){
+      updateShowVoteResults: function(showVoteResults){
         return $http.put(base + 'vote-results', {
             showVoteResults: showVoteResults
         });
       },
-      updateVotingStatus: function(votingEnabled){
-          return $http.put(base + 'voting-enabled', {
-              votingEnabled: votingEnabled
-          });
+      updateVotingEnabled: function(votingEnabled){
+        return $http.put(base + 'voting-enabled', {
+            votingEnabled: votingEnabled
+        });
       }
     };
 

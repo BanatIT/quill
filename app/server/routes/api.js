@@ -19,7 +19,7 @@ module.exports = function(router) {
 
   function teamCanBeVoted(teamId, eligibleTeams){
     for(var i=0;i<eligibleTeams.length;i++){
-      if(eligibleTeams._id === teamId){
+      if(eligibleTeams[i]._id.toString() === teamId){
         return true;
       }
     }
@@ -377,9 +377,9 @@ module.exports = function(router) {
       // var userId;
       UserController.getByToken(token, function(err, user){
         if(user && userCanVote(user)) {
-            TeamController.getAllTeamsEligibleForVote(function (eligibleTeams) {
+            TeamController.getAllTeamsEligibleForVote(function (err,eligibleTeams) {
 
-              if(teamCanBeVoted(eligibleTeams)) {
+              if(teamCanBeVoted(teamId,eligibleTeams)) {
                   UserController.voteTeam(user, teamId, defaultResponse(req, res));
               }else{
                   return res.status(409).send({
