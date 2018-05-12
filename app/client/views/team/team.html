@@ -2,7 +2,7 @@
   <div class="divided title">
     Team
   </div>
-  <div class="ui stackable centered page grid">
+  <div class="ui stackable centered page grid" ng-show="isParticipant">
     <div class="column">
       <div
         class="ui error message"
@@ -11,33 +11,10 @@
       </div>
 
       <div class="ui segment">
-        <!--<div-->
-          <!--ng-show="!user.teamCode && !regIsOpen">-->
-          <!--<p>-->
-            <!--{{ TEAM.NO_TEAM_REG_CLOSED }}-->
-          <!--</p>-->
-        <!--</div>-->
 
-        <!-- team -->
-
-        <!--<div-->
-          <!--class="ui form"-->
-          <!--ng-show="!user.teamCode && regIsOpen">-->
-
-          <!--<div class="title">Team</div>-->
-          <!--<div class="field">-->
-            <!--<input-->
-                    <!--class="ui input"-->
-                    <!--type="text"-->
-                    <!--placeholder="Choose your team name..."-->
-                    <!--ng-model="code">-->
-          <!--</div>-->
-        <!--</div>-->
 
         <!-- Team data-->
-        <div
-          class="ui form"
-          >
+        <div class="ui form" >
 
           <div class="title">
             Your Team
@@ -111,8 +88,7 @@
 
 
 
-        <div
-          ng-show="user.teamCode">
+        <div ng-show="user.teamCode" >
 
           <div class="ui divider"></div>
 
@@ -157,7 +133,7 @@
             <div class="twelve wide column" >{{team.name}}</div>
 
             <div class="four wide column" >
-              <button ng-show="!user.teamCode"
+              <button ng-show="!user.teamCode && isParticipant"
                       class="ui fluid green button"
                       ng-click="joinTeam(team._id)">
                 Join Team
