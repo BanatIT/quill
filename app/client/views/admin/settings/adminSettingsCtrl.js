@@ -37,6 +37,30 @@ angular.module('reg')
           });
       };
 
+      $scope.updateShowVoteResults = function () {
+          SettingsService
+              .updateShowVoteResults($scope.settings.showVoteResults)
+              .success(function (data) {
+                  $scope.settings.showVoteResults = data.showVoteResults;
+                  const successText = $scope.settings.showVoteResults ?
+                      "Vote Results are shown!" :
+                      "Vote Results are NOT shown!";
+                  swal("Looks good!", successText, "success");
+              });
+      };
+
+        $scope.updateVotingEnabled = function () {
+            SettingsService
+                .updateVotingEnabled($scope.settings.votingEnabled)
+                .success(function (data) {
+                    $scope.settings.votingEnabled = data.votingEnabled;
+                    const successText = $scope.settings.votingEnabled ?
+                        "Voting is now ENABLED." :
+                        "Voting is now DISABLED.";
+                    swal("Looks good!", successText, "success");
+                });
+        };
+
         $scope.updateAllowRegistration = function () {
             SettingsService
                 .updateAllowRegistration($scope.settings.allowRegistration)
@@ -44,7 +68,7 @@ angular.module('reg')
                     $scope.settings.allowRegistration = data.allowRegistration;
                     const successText = $scope.settings.allowRegistration ?
                         "Registration is now open." :
-                        "Registration is now closed."
+                        "Registration is now closed.";
                     swal("Looks good!", successText, "success");
                 });
         };

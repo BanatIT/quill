@@ -1,0 +1,62 @@
+<div id="team" class="page">
+    <div class="divided title">
+        {{settings.votingEnabled ? 'Vote your favorite team' : settings.showVoteResults ? 'Vote Results' : 'Voting is closed'}}
+    </div>
+
+    <div class="ui stackable centered page grid" ng-if="ready">
+        <div class="column" ng-if="settings.votingEnabled">
+            <div class="ui segment" ng-if="canVote">
+
+
+                <div class="ui list">
+                    <div class="item" ng-repeat="team in teams | orderBy:'name'">
+
+                        <div class="ui radio checkbox">
+                            <input
+                                    type="radio"
+                                    name="selectedTeam"
+                                    ng-model="selectedTeam">
+                            <label>{{team.name}}</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui divider"></div>
+
+                <div class="field">
+                    <div
+                            class="ui green button"
+                            ng-disabled="!selectedTeam"
+                            ng-click="castVote()">
+                        Vote Team
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="ui segment" ng-if="!canVote">
+
+                <p>You have already voted!</p>
+
+            </div>
+        </div>
+        <div class="column" ng-if="settings.showVoteResults">
+            <div class="ui segment">
+                <div class="ui list">
+                    <div class="item" ng-repeat="team in teams | orderBy:'name'">
+
+                        <div class="ui progress success" ng-attr-data-value="{{team.totalScore}}" data-total="100" >
+                            <div class="bar">
+                                <div class="progress"></div>
+                            </div>
+                            <div class="label">{{team.name}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>

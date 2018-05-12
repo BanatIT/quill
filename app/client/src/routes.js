@@ -185,6 +185,11 @@ angular.module('reg')
         url: "/schedule",
         templateUrl: "views/schedule/schedule.html",
         controller: 'ScheduleCtrl'
+      })
+      .state('app.vote', {
+          url: "/vote",
+          templateUrl: "views/vote/vote.html",
+          controller: 'VoteCtrl '
       });
 
     $locationProvider.html5Mode({

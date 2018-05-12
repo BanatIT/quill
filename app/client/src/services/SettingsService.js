@@ -57,6 +57,16 @@ angular.module('reg')
         return $http.put(base + 'registration', {
           allowRegistration: allowRegistration
         });
+      },
+      updateShowVoteResult: function(showVoteResults){
+        return $http.put(base + 'vote-results', {
+            showVoteResults: showVoteResults
+        });
+      },
+      updateVotingStatus: function(votingEnabled){
+          return $http.put(base + 'voting-enabled', {
+              votingEnabled: votingEnabled
+          });
       }
     };
 

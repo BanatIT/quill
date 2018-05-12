@@ -9,15 +9,18 @@ angular.module('reg')
             return {
 
                 getAllTeamsEligibleForVote: function () {
-                    return $http.get(votes);
+                    return $http.get(votes+'/teams');
                 },
 
                 castVote: function (teamId) {
                     return $http.post(votes, {
                         teamId: teamId
                     });
-                }
+                },
 
+                getVoteCount: function(){
+                    return $http.get(votes);
+                }
 
             }
         }

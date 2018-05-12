@@ -236,7 +236,7 @@ var schema = new mongoose.Schema({
     type: String,
     min: 0,
     max: 140,
-    required: true,
+    required: false,
     default: null
   }
 

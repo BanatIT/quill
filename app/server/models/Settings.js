@@ -45,6 +45,16 @@ var schema = new mongoose.Schema({
   },
   importFromUrl: {
     type: String
+  },
+  showVoteResults: {
+      type: Boolean,
+      required: true,
+      default: false
+  },
+  votingEnabled: {
+      type: Boolean,
+      required: true,
+      default: false
   }
 });
 

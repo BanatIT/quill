@@ -6,8 +6,8 @@ angular.module('reg')
         'Utils',
         'UserService',
         'VoteService',
-        'TEAM',
-        function ($scope, currentUser, settings, Utils, UserService, VoteService, TEAM) {
+        'SettingsService',
+        function ($scope, currentUser, settings, Utils, UserService, VoteService, SettingsService) {
 
 
             $scope.ready = false;
@@ -19,17 +19,36 @@ angular.module('reg')
             function loadVotes() {
 
                 UserService.getCurrentUser().then(function (res) {
-                    console.log(res);
-                    if (res.votedForTeamId && res.votedForTeamId.length > 0) {
+
+                    if (res.votedTeamId && res.votedTeamId.length > 0) {
                         $scope.ready = true;
                         $scope.canVote = false;
                     }
-                    VoteService.getAllTeamsEligibleForVote().then(function (teams) {
-                        console.log(teams);
-                        $scope.canVote = true;
-                        $scope.ready = true;
-                        $scope.teams = teams;
-                    });
+
+                    if($scope.canVote) {
+
+                        SettingsService.getPublicSettings().then(function (settings) {
+                            $scope.settings = settings;
+
+                            if (settings.showVoteResults) {
+
+                                VoteService.getVoteCount().then(function (teams) {
+                                    $scope.canVote = true;
+                                    $scope.ready = true;
+                                    $scope.teams = teams;
+                                });
+                            } else if (settings.votingEnabled) {
+                                VoteService.getAllTeamsEligibleForVote().then(function (teams) {
+                                    $scope.canVote = true;
+                                    $scope.ready = true;
+                                    $scope.teams = teams;
+                                });
+                            }
+
+
+                        });
+
+                    }
 
                 });
 

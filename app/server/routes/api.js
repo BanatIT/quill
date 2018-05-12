@@ -7,10 +7,24 @@ var request = require('request');
 
 module.exports = function(router) {
 
+  var ticketsThatCanVote = ['Full Ticket', 'Student Ticket', 'Junior League Ticket', 'Mentor'];
+
   function getToken(req){
     return req.headers['x-access-token'];
   }
 
+  function userCanVote(user){
+    return !user.votedTeamId && ticketsThatCanVote.indexOf(user.ticketType) >= 0;
+  }
+
+  function teamCanBeVoted(teamId, eligibleTeams){
+    for(var i=0;i<eligibleTeams.length;i++){
+      if(eligibleTeams._id === teamId){
+        return true;
+      }
+    }
+    return false;
+  }
   /**
    * Using the access token provided, check to make sure that
    * you are, indeed, an admin.
@@ -349,7 +363,11 @@ module.exports = function(router) {
   });
 
   router.get('/vote', function (req, res) {
-      UserController.getVoteCount(defaultResponse(req, res));
+      TeamController.getVoteCount(defaultResponse(req, res));
+  });
+
+  router.get('/vote/teams', function(req, res){
+    TeamController.getAllTeamsEligibleForVote(defaultResponse(req,res));
   });
 
   router.post('/vote', function (req, res) {
@@ -358,8 +376,22 @@ module.exports = function(router) {
 
       // var userId;
       UserController.getByToken(token, function(err, user){
-        if(user && user) {
-            UserController.voteTeam(user, teamId, defaultResponse(req, res));
+        if(user && userCanVote(user)) {
+            TeamController.getAllTeamsEligibleForVote(function (eligibleTeams) {
+
+              if(teamCanBeVoted(eligibleTeams)) {
+                  UserController.voteTeam(user, teamId, defaultResponse(req, res));
+              }else{
+                  return res.status(409).send({
+                      message: 'Team cannot be voted'
+                  });
+              }
+            });
+
+        }else{
+            return res.status(400).send({
+                message: 'You cannot vote or have already voted'
+            });
         }
       });
   });
@@ -491,11 +523,19 @@ module.exports = function(router) {
    *
    */
   router.put('/settings/registration', isAdmin, function(req, res){
-    var allowRegistration = req.body.allowRegistration;
-    SettingsController.updateField('allowRegistration', allowRegistration, defaultResponse(req, res));
+      var allowRegistration = req.body.allowRegistration;
+      SettingsController.updateField('allowRegistration', allowRegistration, defaultResponse(req, res));
   });
 
+  router.put('/settings/vote-results', isAdmin, function(req, res){
+      var showVoteResults = req.body.showVoteResults;
+      SettingsController.updateField('showVoteResults', showVoteResults, defaultResponse(req, res));
+  });
 
+  router.put('/settings/voting-enabled', isAdmin, function(req, res){
+      var votingEnabled = req.body.votingEnabled;
+      SettingsController.updateField('votingEnabled', votingEnabled, defaultResponse(req, res));
+  });
 
 
   router.put('/notification/create', isAdmin, function(req, res){

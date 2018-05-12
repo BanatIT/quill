@@ -4,6 +4,15 @@ var UserController = require('./UserController');
 
 var TeamController = {};
 
+
+function sortTeamsByScoreDescending(a, b) {
+    if (a.gavelScore > b.gavelScore)
+        return -1;
+    if (a.gavelScore < b.gavelScore)
+        return 1;
+    return 0;
+}
+
 TeamController.getTeams = function (callback){
   Team.find({}, callback);
 };
@@ -111,6 +120,68 @@ TeamController.updateTeam = function (teamCode, team, userId, callback){
     }, callback)
   });
 };
+
+TeamController.getAllTeamsEligibleForVote = function(callback){
+    Team.find({}, function(err, teams) {
+
+        teams.sort(sortTeamsByScoreDescending);
+        return callback(null,teams.slice(0,10));
+
+    });
+};
+
+TeamController.getVoteCount = function (callback) {
+    Settings.getPublicSettings(function(err, settings){
+
+        if(settings.showVoteResults) {
+            User.find({}, function (err, users) {
+                var voteMap = {};
+
+                var highestVoteScore = 0;
+                users.forEach(function (user) {
+                    if (user.votedTeamId) {
+                        var votes = voteMap[user.votedTeamId];
+                        if (votes) {
+                            voteMap[user.votedTeamId] += 1;
+                        } else {
+                            voteMap[user.votedTeamId] = 1;
+                        }
+                        if(voteMap[user.votedTeamId]  > highestVoteScore){
+                            highestVoteScore = voteMap[user.votedTeamId];
+                        }
+                    }
+                });
+
+
+                return TeamController.getAllTeamsEligibleForVote(function(error,teams){
+
+                    var maxGavelScore = 0;
+                    teams.forEach(function(team){
+                        if(team.gavelScore > maxGavelScore){
+                            maxGavelScore = team.gavelScore;
+                        }
+                    });
+
+                    teams.forEach(function(team){
+                        team.gavelScore = team.gavelScore / maxGavelScore;
+                        team.totalScore = team.gavelScore + (voteMap[team._id]/highestVoteScore);
+                        team.totalScore *= 100;
+                    });
+
+                    return callback(null,teams);
+                });
+            });
+        }else{
+            return callback({
+                message: 'Vote results are hidden'
+            });
+        }
+    });
+
+
+};
+
+
 
 // User.findOneAndUpdate({
 //     _id: id,

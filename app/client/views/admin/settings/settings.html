@@ -138,6 +138,28 @@ class="ui green segment">
             <label>Allow registration</label>
           </div>
         </div>
+        <div class="field">
+          <div class="ui toggle checkbox">
+            <input
+                    type="checkbox"
+                    name="allowRegistration"
+                    ng-class="{true: 'checked', false: ''}[settings.votingEnabled]"
+                    ng-model="settings.votingEnabled"
+                    ng-change="updateVotingEnabled()">
+            <label>Enable Voting</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui toggle checkbox">
+            <input
+                    type="checkbox"
+                    name="allowRegistration"
+                    ng-class="{true: 'checked', false: ''}[settings.showVoteResults]"
+                    ng-model="settings.showVoteResults"
+                    ng-change="updateShowVoteResults()">
+            <label>Show Vote Results</label>
+          </div>
+        </div>
       </div>
     </div>
   </div>

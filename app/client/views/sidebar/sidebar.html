@@ -34,6 +34,13 @@
       Map
     </div>
     <div
+      ui-sref-active="active"
+      ui-sref="app.vote"
+      class="item"
+      ng-show="(settings.votingEnabled || settings.showVoteResults) && !currentUser.status.declined">
+      Vote
+    </div>
+    <div
     ui-sref-active="active"
     ui-sref="app.schedule"
     class="item">

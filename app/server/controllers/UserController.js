@@ -695,54 +695,26 @@ UserController.checkOutById = function(id, user, callback){
   callback);
 };
 
-UserController.getVoteCount = function (callback) {
-    User.find({}, function(err, users) {
-        var voteMap = {};
 
-        users.forEach(function(user) {
-          if(user.votedTeamId) {
-              var votes = voteMap[user.votedTeamId];
-              if (votes) {
-                  voteMap[user.votedTeamId] += 1;
-              } else {
-                  voteMap[user.votedTeamId] = 1;
-              }
-          }
+UserController.voteTeam = function (user, teamId, callback) {
+    Settings.getPublicSettings(function(err, settings) {
+        if(settings.votingEnabled) {
+            User.findOneAndUpdate({
+                    _id: user._id,
+                    verified: true
+                }, {
+                    $set: {
+                        'votedTeamId': teamId
+                    }
+                }, {
+                    new: false
+                },
+                callback);
+        }
+        return callback({
+            message: 'Voting not enabled'
         });
-
-        return callback(voteMap);
-
     });
-
-};
-
-UserController.voteTeam = function (userId, teamId, callback) {
-    User.findOne(
-        {
-            _id: id,
-            verified: true
-        },
-        function(err, user){
-            if (err || !user){
-                return callback(err);
-            }else if(!user.votedTeamId){
-                User.findOneAndUpdate({
-                            _id: id,
-                            verified: true
-                        },{
-                            $set: {
-                                'votedTeamId': teamId
-                            }
-                        }, {
-                            new: false
-                        },
-                        callback);
-            }else{
-                return callback({
-                    message: "You've already voted"
-                });
-            }
-        });
 };
 
 
