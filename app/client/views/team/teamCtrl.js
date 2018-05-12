@@ -27,8 +27,9 @@ angular.module('reg')
 
 
       function _getAll(){
-        TeamService.getAll().success(function(tems){
-          $scope.teams = tems;
+        TeamService.getAll().success(function(teams){
+          $scope.teams = teams;
+          console.log(teams);
         }).error(function(res){
           $scope.error = res.message;
         });

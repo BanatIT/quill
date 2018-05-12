@@ -128,18 +128,35 @@
 
         <div class="ui divider"></div>
 
-        <div ng-repeat="team in teams | filter:query">
-          <div class="ui grid">
-            <div class="twelve wide column" >{{team.name}}</div>
 
-            <div class="four wide column" >
+        <div class="ui accordion">
+          <div ng-repeat="team in teams | filter:query">
+            <div class="title " ng-class="team.active ? 'active': ''" ng-click="team.active = !team.active">
+              <i class="dropdown icon "></i>
+              <span class="">{{team.name}}</span>
               <button ng-show="!user.teamCode && isParticipant"
-                      class="ui fluid green button"
-                      ng-click="joinTeam(team._id)">
+                class="ui green button "
+                ng-click="joinTeam(team._id)">
                 Join Team
               </button>
             </div>
+            <div class="content" ng-class="team.active ? 'active': ''">
+              <div>{{team.description}}</div>
+            </div>
+          </div>
         </div>
+        <!--<div ng-repeat="team in teams | filter:query">-->
+          <!--<div class="ui grid">-->
+            <!--<div class="twelve wide column" >{{team.name}}</div>-->
+
+            <!--<div class="four wide column" >-->
+              <!--<button ng-show="!user.teamCode && isParticipant"-->
+                      <!--class="ui fluid green button"-->
+                      <!--ng-click="joinTeam(team._id)">-->
+                <!--Join Team-->
+              <!--</button>-->
+            <!--</div>-->
+        <!--</div>-->
       </div>
       </div>
     </div>
