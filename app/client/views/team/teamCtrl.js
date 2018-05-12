@@ -48,7 +48,6 @@ angular.module('reg')
       function _getTeam() {
         TeamService.get($scope.user.teamCode)
           .success(function(team){
-            $scope.user.teamCode;
             $scope.team = team;
             $scope.isOwner = $scope.user._id === team.owner;
           }).error(function(err){
