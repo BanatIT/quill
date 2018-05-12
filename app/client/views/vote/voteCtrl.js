@@ -16,6 +16,20 @@ angular.module('reg')
 
             $scope.castVote = castVote;
 
+            function buildFukingStupidSemanticUiProgressBar(){
+                var loops = 0;
+                var interval = setInterval(function () {
+                    var elements = $('.vote-score');
+                    if (elements.length === $scope.teams.length) {
+                        $('.vote-score').progress();
+                        loops += 1;
+                        if (loops > 3) {
+                            clearInterval(interval);
+                        }
+                    }
+                }, 250);
+            }
+
             function castVote() {
                 VoteService.castVote($scope.selectedTeam.id).then(function () {
                     $scope.canVote = false;
@@ -45,19 +59,8 @@ angular.module('reg')
                                 $scope.canVote = false;
                                 $scope.ready = true;
                                 $scope.teams = teams.data;
+                                buildFukingStupidSemanticUiProgressBar();
                             });
-
-                            var loops = 0;
-                            var interval = setInterval(function () {
-                                var elements = $('.vote-score');
-                                if (elements.length === $scope.teams.length) {
-                                    $('.vote-score').progress();
-                                    loops +=1;
-                                    if(loops > 10) {
-                                        clearInterval(interval);
-                                    }
-                                }
-                            }, 250);
 
 
                         } else if ($scope.settings.votingEnabled) {
