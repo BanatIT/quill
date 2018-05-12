@@ -19,6 +19,7 @@ angular.module('reg')
             function castVote() {
                 VoteService.castVote($scope.selectedTeam.id).then(function () {
                     $scope.canVote = false;
+                    swal("Thank you for voting!", '', "success");
                 });
             }
 
@@ -37,34 +38,32 @@ angular.module('reg')
 
                     SettingsService.getPublicSettings().then(function (settings) {
                         $scope.settings = settings.data;
-                        if ($scope.canVote) {
 
-                            if ($scope.settings.showVoteResults) {
+                        if ($scope.settings.showVoteResults) {
 
-                                VoteService.getVoteCount().then(function (teams) {
-                                    $scope.canVote = true;
-                                    $scope.ready = true;
-                                    $scope.teams = teams.data;
-                                });
+                            VoteService.getVoteCount().then(function (teams) {
+                                $scope.canVote = false;
+                                $scope.ready = true;
+                                $scope.teams = teams.data;
+                            });
 
-                                var interval = setInterval(function () {
-                                    var elements = $('.vote-score');
-                                    if (elements.length === $scope.teams.length) {
-                                        $('.vote-score').progress();
-                                        clearInterval(interval);
-                                    }
-                                }, 250);
+                            var interval = setInterval(function () {
+                                var elements = $('.vote-score');
+                                if (elements.length === $scope.teams.length) {
+                                    $('.vote-score').progress();
+                                    clearInterval(interval);
+                                }
+                            }, 250);
 
 
-                            } else if ($scope.settings.votingEnabled) {
-                                VoteService.getAllTeamsEligibleForVote().then(function (teams) {
-                                    $scope.canVote = true;
-                                    $scope.ready = true;
-                                    $scope.teams = teams.data;
-                                });
-                            }
-
+                        } else if ($scope.settings.votingEnabled) {
+                            VoteService.getAllTeamsEligibleForVote().then(function (teams) {
+                                $scope.canVote = true;
+                                $scope.ready = true;
+                                $scope.teams = teams.data;
+                            });
                         }
+
 
                     });
 
