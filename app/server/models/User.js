@@ -197,6 +197,10 @@ var schema = new mongoose.Schema({
     max: 140,
   },
 
+  ticketType: {
+    type: String
+  },
+
   verified: {
     type: Boolean,
     required: true,

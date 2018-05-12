@@ -8,6 +8,9 @@ angular.module('reg')
     'TeamService',
     'TEAM',
     function($scope, currentUser, settings, Utils, UserService, TeamService, TEAM){
+      //constants
+      var participantType = ['Full Ticket', 'Student Ticket', 'Junior League Ticket'];
+
       // Get the current user's most recent data.
       var Settings = settings.data;
 
@@ -17,9 +20,10 @@ angular.module('reg')
 
       $scope.TEAM = TEAM;
 
-      $scope.teams = []
+      $scope.teams = [];
 
       $scope.isOwner = false;
+      $scope.isParticipant = participantType.indexOf($scope.user.ticketType) > -1;
 
 
       function _getAll(){
