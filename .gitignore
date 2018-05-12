@@ -5,4 +5,5 @@ app/client/plugins/
 *.log
 .env
 .idea/
+*.iml
 package-lock.json
