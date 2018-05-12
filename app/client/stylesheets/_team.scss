@@ -2,6 +2,15 @@
   text-align: center;
   .title {
     padding-top: 24px;
+    display: flex;
+
+    .team-info {
+      //flex-grow: 2;
+    }
+
+    .team-join {
+      margin-left: auto;
+    }
   }
   p {
     text-align: center;
@@ -10,4 +19,6 @@
   .subheader {
     word-wrap: break-word;
   }
+
+
 }

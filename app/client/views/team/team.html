@@ -132,10 +132,13 @@
         <div class="ui accordion">
           <div ng-repeat="team in teams | filter:query">
             <div class="title " ng-class="team.active ? 'active': ''" ng-click="team.active = !team.active">
-              <i class="dropdown icon "></i>
-              <span class="">{{team.name}}</span>
+              <div class="team-info">
+                <i class="dropdown icon "></i>
+                <span class="">{{team.name}} </span>
+                <span ng-show="team.table">(Table: {{team.table}})</span>
+              </div>
               <button ng-show="!user.teamCode && isParticipant"
-                class="ui green button "
+                class="ui green button team-join"
                 ng-click="joinTeam(team._id)">
                 Join Team
               </button>
