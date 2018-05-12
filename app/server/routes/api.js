@@ -498,7 +498,7 @@ module.exports = function(router) {
    *
    * GET - Get all notifications
    */
-  router.get('/notification', isAdmin, function(req, res){
+  router.get('/notification', function(req, res){
       NotificationController.getAll(defaultResponse(req, res));
   });
 };
