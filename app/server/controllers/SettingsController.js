@@ -100,6 +100,12 @@ SettingsController.importFromUrl = function (url, callback){
 
 };
 
+SettingsController.importGavel = function (url, callback){
+    Import.importGavel(url);
+};
+
+
+
 /**
  * Get all public settings.
  * @param  {Function} callback [description]

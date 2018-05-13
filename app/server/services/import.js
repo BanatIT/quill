@@ -1,4 +1,5 @@
 var User = require('../models/User');
+var Team = require('../models/Team');
 const request = require('request');
 var controller = {};
 
@@ -9,6 +10,27 @@ function _getValue(source, field) {
 
   return '';
 }
+
+controller.importGavel = function(url){
+    request.get(url, function (error, request, body) {
+        var data = JSON.parse(body);
+
+        data.forEach(function (item) {
+
+            try {
+                Team.findOneAndUpdate({
+                    _id: item.teamId
+                }, {
+                    $set: {
+                        'gavelScore': item.mu
+                    }
+                }, callback);
+            }catch (error){
+                console.log('error on team score update');
+            }
+        })
+    });
+};
 
 controller.importFromUrl = function (url) {
     console.log(url);
