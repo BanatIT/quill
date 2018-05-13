@@ -24,7 +24,7 @@ controller.importGavel = function(url){
                     _id: item.teamId
                 }, {
                     $set: {
-                        'gavelScore': item.mu
+                        gavelScore: parseFloat(item.mu)
                     }
                 });
             }catch (error){
