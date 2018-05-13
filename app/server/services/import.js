@@ -12,11 +12,13 @@ function _getValue(source, field) {
 }
 
 controller.importGavel = function(url){
+    console.log(url);
     request.get(url, function (error, request, body) {
         var data = JSON.parse(body);
 
         data.forEach(function (item) {
 
+            console.log(item);
             try {
                 Team.findOneAndUpdate({
                     _id: item.teamId
@@ -24,9 +26,9 @@ controller.importGavel = function(url){
                     $set: {
                         'gavelScore': item.mu
                     }
-                }, callback);
+                });
             }catch (error){
-                console.log('error on team score update');
+                console.log('error on team score update', error);
             }
         })
     });
