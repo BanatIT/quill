@@ -1,6 +1,26 @@
 <div id="stats">
 
   <div
+          class="ui green segment"
+          ng-class="{'loading': loading}">
+    <div class="ui header">
+      Vote Results
+    </div>
+    <div class="content">
+      <div class="ui list">
+        <div class="item" ng-repeat="team in teams | orderBy:'-totalScore'">
+
+          <div class="ui progress teal vote-score" ng-attr-data-percent="{{team.totalScore}}" >
+            <div class="bar">
+            </div>
+            <div class="label"><em>{{team.name}}</em> | Total Score (Normalized): {{team.totalScore | number: 2}} | Gavel Score: {{team.gavelScore | number: 2}} | Vote Count: {{team.votes}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
     class="ui green segment"
     ng-class="{'loading': loading}">
     <div class="ui header">

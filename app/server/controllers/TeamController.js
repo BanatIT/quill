@@ -152,10 +152,10 @@ TeamController.getAllTeamsEligibleForVote = function (callback) {
     });
 };
 
-TeamController.getVoteCount = function (callback) {
+TeamController.getVoteCount = function (callback, admin) {
     Settings.getPublicSettings(function (err, settings) {
 
-        if (settings.showVoteResults) {
+        if (settings.showVoteResults || admin) {
             User.find({}, function (err, users) {
                 var voteMap = {};
 
@@ -198,6 +198,7 @@ TeamController.getVoteCount = function (callback) {
                         team.gavelScore = team.gavelScore / maxGavelScore;
                         team.totalScore = team.gavelScore + (votesForTeam / highestVoteScore);
                         team.totalScore *= 100;
+                        team.votes = votesForTeam;
                     });
 
 

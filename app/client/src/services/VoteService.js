@@ -9,7 +9,7 @@ angular.module('reg')
             return {
 
                 getAllTeamsEligibleForVote: function () {
-                    return $http.get(votes+'/teams');
+                    return $http.get(votes + '/teams');
                 },
 
                 castVote: function (teamId) {
@@ -18,8 +18,12 @@ angular.module('reg')
                     });
                 },
 
-                getVoteCount: function(){
+                getVoteCount: function () {
                     return $http.get(votes);
+                },
+
+                getVoteCountAdmin: function () {
+                    return $http.get(votes + '/teams/admin');
                 }
 
             }

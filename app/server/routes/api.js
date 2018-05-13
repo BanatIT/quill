@@ -371,6 +371,11 @@ module.exports = function (router) {
         TeamController.getAllTeamsEligibleForVote(defaultResponse(req, res));
     });
 
+
+    router.get('/vote/teams/admin',isAdmin, function (req, res) {
+        TeamController.getVoteCount(defaultResponse(req, res), true);
+    });
+
     router.post('/vote', function (req, res) {
         var teamId = req.body.teamId;
         var token = getToken(req);
