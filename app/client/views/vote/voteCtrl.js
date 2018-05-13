@@ -65,7 +65,6 @@ angular.module('reg')
 
                         } else if ($scope.settings.votingEnabled) {
                             VoteService.getAllTeamsEligibleForVote().then(function (teams) {
-                                $scope.canVote = true;
                                 $scope.ready = true;
                                 $scope.teams = teams.data;
                             });

@@ -44,7 +44,7 @@
         <div class="column" ng-if="settings.showVoteResults">
             <div class="ui segment">
                 <div class="ui list">
-                    <div class="item" ng-repeat="team in teams | orderBy:'name'">
+                    <div class="item" ng-repeat="team in teams | orderBy:'-totalScore'">
 
                         <div class="ui progress teal vote-score" ng-attr-data-percent="{{team.totalScore}}" >
                             <div class="bar">
