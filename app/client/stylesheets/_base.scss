@@ -27,3 +27,13 @@
     }
   }
 }
+
+
+.ui.active.progress .bar::after {
+  animation: none;
+  max-width: 0;
+  display: none;
+  max-height: 0;
+  position: relative;
+  visibility: hidden;
+}
