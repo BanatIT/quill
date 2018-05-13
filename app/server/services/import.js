@@ -18,7 +18,7 @@ controller.importGavel = function(url){
 
         data.forEach(function (item) {
 
-            console.log(item);
+            console.log(item.teamId, item.mu);
             try {
                 Team.findOneAndUpdate({
                     _id: item.teamId
@@ -26,6 +26,8 @@ controller.importGavel = function(url){
                     $set: {
                         gavelScore: parseFloat(item.mu)
                     }
+                }, function (err, team) {
+                    console.log('done update ', item.teamId, err, team);
                 });
             }catch (error){
                 console.log('error on team score update', error);
