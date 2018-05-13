@@ -3,20 +3,27 @@ angular.module('reg')
         '$scope',
         'UserService',
         'VoteService',
+        'TeamService',
         'SettingsService',
-        function ($scope, UserService, VoteService, SettingsService) {
+        function ($scope, UserService, VoteService, TeamService, SettingsService) {
 
 
             $scope.ready = false;
             $scope.canVote = false;
             $scope.teams = [];
+            $scope.votedForTeamName = '';
             $scope.settings = {};
             $scope.selectedTeam = {};
             loadVotes();
 
             $scope.castVote = castVote;
 
-            function buildFuckingStupidSemanticUiProgressBar(){
+
+            function setTeamName() {
+
+            }
+
+            function buildFuckingStupidSemanticUiProgressBar() {
                 var loops = 0;
                 var interval = setInterval(function () {
                     var elements = $('.vote-score');
@@ -45,6 +52,9 @@ angular.module('reg')
                     if (res.data.votedTeamId && res.data.votedTeamId.length > 0) {
                         $scope.ready = true;
                         $scope.canVote = false;
+                        TeamService.get(res.data.votedTeamId).then(function(team){
+                            $scope.votedForTeamName = team.data.name;
+                        });
                     } else {
                         $scope.canVote = true;
                     }
