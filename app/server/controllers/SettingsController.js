@@ -102,6 +102,7 @@ SettingsController.importFromUrl = function (url, callback){
 
 SettingsController.importGavel = function (url, callback){
     Import.importGavel(url);
+    callback(null,{message:'success'})
 };
 
 
