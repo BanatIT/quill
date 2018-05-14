@@ -29,7 +29,7 @@ angular.module('reg')
       function _getAll(){
         TeamService.getAll().success(function(teams){
           $scope.teams = teams;
-          console.log(teams);
+          console.log(JSON.stringify(teams));
         }).error(function(res){
           $scope.error = res.message;
         });
