@@ -34,7 +34,7 @@ angular.module('reg')
 
             VoteService.getVoteCountAdmin().then(function (teams) {
                 $scope.teams = teams.data;
-                console.log($scope.teams);
+                console.log(JSON.stringify($scope.teams));
                 buildFuckingStupidSemanticUiProgressBar();
             });
 
