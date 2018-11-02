@@ -57,7 +57,7 @@ controller.importFromUrl = function (url) {
            return;
          }
 
-         var allowedStatus = ['processing', 'completed'];
+         var allowedStatus = ['processing', 'completed', 'pending'];
          if (allowedStatus.indexOf(item.order_status) < 0 ) {
            console.warn('Order '+ item.order_id+ 'is not allowed for status: '+item.order_status);
            noTicketStatus++;
