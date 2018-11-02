@@ -50,7 +50,7 @@ controller.importFromUrl = function (url) {
           var attendeeData = item.attendee_meta;
 
           //Skip records
-         var allowedTickets = ['Student Pass','Visitor Ticket','Student Pass + Accommodation','Full Ticket', 'Student Ticket', 'Junior League Ticket', 'Mentor'];
+         var allowedTickets = ['General Pass','Student Pass','Visitor Ticket','Student Pass + Accommodation','Full Ticket', 'Student Ticket', 'Junior League Ticket', 'Mentor'];
          if (allowedTickets.indexOf(item.ticket_name) < 0 ) {
            console.warn('Order '+ item.order_id+ 'is not allowed for type: '+item.ticket_name);
            noTicketType++;
