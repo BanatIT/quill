@@ -14,7 +14,7 @@ module.exports = function (router) {
     }
 
     function userCanVote(user) {
-        return !user.votedTeamId && ticketsThatCanVote.indexOf(user.ticketType) >= 0;
+        return !user.votedTeamId;
     }
 
     function teamCanBeVoted(teamId, eligibleTeams) {
