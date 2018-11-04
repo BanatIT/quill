@@ -700,8 +700,7 @@ UserController.voteTeam = function (user, teamId, callback) {
     Settings.getPublicSettings(function(err, settings) {
         if(settings.votingEnabled) {
             User.findOneAndUpdate({
-                    _id: user._id,
-                    verified: true
+                    _id: user._id
                 }, {
                     $set: {
                         'votedTeamId': teamId
