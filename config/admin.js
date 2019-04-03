@@ -11,14 +11,14 @@ User.findOne({
     if (!user) {
         user = new User();
         setProperties(user);
-        u.save(function (err) {
+        user.save(function (err) {
             if (err) {
                 console.log(err);
             }
         });
     } else {
         setProperties(user);
-        u.update(function (err) {
+        user.update(function (err) {
             if (err) {
                 console.log(err);
             }
