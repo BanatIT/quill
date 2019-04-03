@@ -10,7 +10,6 @@ User
     email: ADMIN_EMAIL
   })
   .exec(function(err, user){
-    if (!user){
       var u = new User();
       u.email = ADMIN_EMAIL;
       u.ticketId = 'admin';
@@ -22,5 +21,4 @@ User
           console.log(err);
         }
       });
-    }
   });
