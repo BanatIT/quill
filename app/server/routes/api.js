@@ -52,6 +52,25 @@ module.exports = function (router) {
         });
     }
 
+    function isExternalToken(req, res, next) {
+
+        if(req && req.body && req.body.api_key){
+            if(req.body.api_key === 'vladIsCool'){
+                return next();
+            }else{
+                return res.status(401).send({
+                    message: 'Invalid API Key';
+                });
+            }
+        }
+
+        return res.status(401).send({
+            message: 'No API Key or Body Provided'
+        });
+
+
+    }
+
     /**
      * [Users API Only]
      *
@@ -568,5 +587,10 @@ module.exports = function (router) {
      */
     router.get('/notification', function (req, res) {
         NotificationController.getAll(defaultResponse(req, res));
+    });
+
+
+    router.get('/cash',isExternalToken, function (req, res) {
+        return res.json(req.body);
     });
 };
