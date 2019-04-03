@@ -5,7 +5,7 @@ ADMIN_PASSWORD = process.env.ADMIN_PASS;
 var User = require('../app/server/models/User');
 
 
-var user = new User();
+var user = {};
 user.email = ADMIN_EMAIL;
 user.ticketId = 'admin';
 user.password = User.generateHash(ADMIN_PASSWORD);
