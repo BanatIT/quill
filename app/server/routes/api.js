@@ -590,7 +590,7 @@ module.exports = function (router) {
     });
 
 
-    router.get('/cash',isExternalToken, function (req, res) {
+    router.post('/cash',isExternalToken, function (req, res) {
         return res.json(req.body);
     });
 };
