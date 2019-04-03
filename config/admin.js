@@ -34,4 +34,3 @@ function setProperties(user) {
     user.admin = true;
     user.verified = true;
 }
-}
