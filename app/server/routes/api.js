@@ -7,7 +7,6 @@ var request = require('request');
 
 module.exports = function (router) {
 
-    var ticketsThatCanVote = ['Full Ticket', 'Student Ticket', 'Junior League Ticket', 'Mentor'];
 
     function getToken(req) {
         return req.headers['x-access-token'];
