@@ -105,7 +105,7 @@ controller.importFromUrl = function (url) {
                 admitted: true,
                 confirmed: true,
                 declined: false,
-                checkedIn: item.check_in.length > 0
+                checkedIn: true
             };
             var u = new User();
             u.ticketId = item.ticket_id;
