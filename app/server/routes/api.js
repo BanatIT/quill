@@ -59,7 +59,7 @@ module.exports = function (router) {
                 return next();
             }else{
                 return res.status(401).send({
-                    message: 'Invalid API Key';
+                    message: 'Invalid API Key'
                 });
             }
         }
