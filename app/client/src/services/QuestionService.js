@@ -29,7 +29,7 @@ angular.module('reg')
                 },
 
                 open: function () {
-                    return $http.get(url + "/mine");
+                    return $http.get(url + "/open");
                 }
 
 
