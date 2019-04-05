@@ -1,7 +1,14 @@
 angular.module('reg')
     .controller('MyHelpCtrl', [
         '$scope',
-        function ($scope) {
+        'QuestionService',
+        function ($scope, QuestionService) {
+
+            $scope.questions = [];
+
+            QuestionService.mine().then(function (res) {
+                $scope.questions = res;
+            });
 
 
         }]);

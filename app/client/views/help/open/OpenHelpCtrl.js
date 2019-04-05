@@ -1,7 +1,13 @@
 angular.module('reg')
     .controller('OpenHelpCtrl', [
-        '$scope',
-        function ($scope) {
+        'QuestionService',
+        function ($scope, QuestionService) {
+
+            $scope.questions = [];
+
+            QuestionService.open().then(function (res) {
+                $scope.questions = res;
+            });
 
 
         }]);

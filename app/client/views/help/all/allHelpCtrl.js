@@ -1,7 +1,13 @@
 angular.module('reg')
     .controller('AllHelpCtrl', [
-        '$scope',
-        function ($scope) {
+        'QuestionService',
+        function ($scope, QuestionService) {
+
+            $scope.questions = [];
+
+            QuestionService.all().then(function (res) {
+                $scope.questions = res;
+            });
 
 
         }]);
