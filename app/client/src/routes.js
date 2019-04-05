@@ -199,6 +199,7 @@ angular.module('reg')
                         }
                     }
                 })
+
                 .state('app.help.mine', {
                     url: "/help-mine",
                     templateUrl: "views/help/mine/my-questions.html",
