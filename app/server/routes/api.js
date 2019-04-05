@@ -192,6 +192,11 @@ module.exports = function (router) {
         UserController.getStats(defaultResponse(req, res));
     });
 
+
+    router.get('/users/stats', isAdmin, function (req, res) {
+        UserController.getStats(defaultResponse(req, res));
+    });
+
     /**
      * [OWNER/ADMIN]
      *
@@ -440,17 +445,6 @@ module.exports = function (router) {
         SettingsController.getPublicSettings(defaultResponse(req, res));
     });
 
-    /**
-     * Update the acceptance text.
-     * body: {
-   *   text: String
-   * }
-     */
-    router.put('/settings/waitlist', isAdmin, function (req, res) {
-        var text = req.body.text;
-        SettingsController.updateField('waitlistText', text, defaultResponse(req, res));
-    });
-
     router.put('/settings/import', isAdmin, function (req, res) {
         var url = req.body.url;
         SettingsController.importFromUrl(url, defaultResponse(req, res));
@@ -460,100 +454,8 @@ module.exports = function (router) {
         SettingsController.importGavel(url, defaultResponse(req, res));
     });
 
-    /**
-     * Update the acceptance text.
-     * body: {
-   *   text: String
-   * }
-     */
-    router.put('/settings/acceptance', isAdmin, function (req, res) {
-        var text = req.body.text;
-        SettingsController.updateField('acceptanceText', text, defaultResponse(req, res));
-    });
-
-    /**
-     * Update the confirmation text.
-     * body: {
-   *   text: String
-   * }
-     */
-    router.put('/settings/confirmation', isAdmin, function (req, res) {
-        var text = req.body.text;
-        SettingsController.updateField('confirmationText', text, defaultResponse(req, res));
-    });
-
-    /**
-     * Update the confirmation date.
-     * body: {
-   *   time: Number
-   * }
-     */
-    router.put('/settings/confirm-by', isAdmin, function (req, res) {
-        var time = req.body.time;
-        SettingsController.updateField('timeConfirm', time, defaultResponse(req, res));
-    });
-
-    /**
-     * Set the registration open and close times.
-     * body : {
-   *   timeOpen: Number,
-   *   timeClose: Number
-   * }
-     */
-    router.put('/settings/times', isAdmin, function (req, res) {
-        var open = req.body.timeOpen;
-        var close = req.body.timeClose;
-        SettingsController.updateRegistrationTimes(open, close, defaultResponse(req, res));
-    });
-
-    /**
-     * Get the whitelisted emails.
-     *
-     * res: {
-   *   emails: [String]
-   * }
-     */
-    router.get('/settings/whitelist', isAdmin, function (req, res) {
-        SettingsController.getWhitelistedEmails(defaultResponse(req, res));
-    });
-
-    /**
-     * [ADMIN ONLY]
-     * {
-   *   emails: [String]
-   * }
-     * res: Settings
-     *
-     */
-    router.put('/settings/whitelist', isAdmin, function (req, res) {
-        var emails = req.body.emails;
-        SettingsController.updateWhitelistedEmails(emails, defaultResponse(req, res));
-    });
-
-    /**
-     * [ADMIN ONLY]
-     * {
-   *   allowMinors: Boolean
-   * }
-     * res: Settings
-     *
-     */
-    router.put('/settings/minors', isAdmin, function (req, res) {
-        var allowMinors = req.body.allowMinors;
-        SettingsController.updateField('allowMinors', allowMinors, defaultResponse(req, res));
-    });
-
-    /**
-     * [ADMIN ONLY]
-     * {
-   *   allowRegistration: Boolean
-   * }
-     * res: Settings
-     *
-     */
-    router.put('/settings/registration', isAdmin, function (req, res) {
-        var allowRegistration = req.body.allowRegistration;
-        SettingsController.updateField('allowRegistration', allowRegistration, defaultResponse(req, res));
+    router.put('/settings/wipe', isAdmin, function (req, res) {
+        SettingsController.wipe(defaultResponse(req, res));
     });
 
     router.put('/settings/vote-results', isAdmin, function (req, res) {
