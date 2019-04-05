@@ -68,6 +68,10 @@ angular.module('reg')
                         showVoteResults: showVoteResults
                     });
                 },
+                wipe: function () {
+                    return $http.put(base + 'wipe', {
+                    });
+                },
                 updateVotingEnabled: function (votingEnabled) {
                     return $http.put(base + 'voting-enabled', {
                         votingEnabled: votingEnabled

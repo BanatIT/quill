@@ -1,6 +1,35 @@
 
 <!--Import Data-->
 <div ng-class="{'loading': loading}"
+     class="ui green segment">
+
+  <div class="ui header">
+    Wipe EVERYTHING
+  </div>
+
+  <div class="column">
+    <div class="ui form">
+      <div class="grouped fields">
+        <div class="field">
+          <label>Import from URL </label>
+          <input type="text"
+                 name="wipe"
+                 ng-model="settings.wipeEverything">
+        </div>
+        <div class="ui field">
+          <div class="ui red button"
+               ng-click="wipe()">
+            Wipe Everything
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Import Data-->
+<div ng-class="{'loading': loading}"
         class="ui green segment">
 
   <div class="ui header">
