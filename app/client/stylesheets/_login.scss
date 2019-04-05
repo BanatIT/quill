@@ -1,9 +1,7 @@
 #login {
 
   width: 100%;
-  background-color: $login-bg-color;
-  background: $login-bg;
-  background-size: cover;
+  background: #101027 !important;
   @media only screen and (min-width: 760px) {
     height: 100%;
   }
