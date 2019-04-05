@@ -120,6 +120,7 @@ module.exports = function (router) {
      */
     function defaultResponse(req, res) {
         return function (err, data) {
+            console.log('Response error', error,data);
             if (err) {
                 // SLACK ALERT!
                 if (process.env.NODE_ENV === 'production') {
