@@ -9,13 +9,13 @@ angular.module('reg')
             return {
 
                 create: function (value) {
-                    return $http.post(url + "/ask", {
+                    return $http.put(url + "/ask", {
                         value: value
                     });
                 },
 
                 mark: function (questionId) {
-                    return $http.post(url + "/mark", {
+                    return $http.put(url + "/mark", {
                         questionId: questionId
                     });
                 },
