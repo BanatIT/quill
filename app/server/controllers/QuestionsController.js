@@ -6,28 +6,32 @@ var QuestionsController = {};
 
 QuestionsController.create = function (userId, value, callback) {
 
+    console.log(userId);
     User.findById(userId, function (err, user) {
 
-        Team.findById(user.teamId, function (err, team) {
-            var newQuestion = {
-                userId: userId,
-                value: value,
-                name: user.profile.name,
-                answered: 'NO'
-            };
+        console.log(err, user);
+        if(user) {
+            Team.findById(user.teamId, function (err, team) {
+                var newQuestion = {
+                    userId: userId,
+                    value: value,
+                    name: user.profile.name,
+                    answered: 'NO'
+                };
 
-            if (team) {
-                newQuestion.team = team.name;
-                newQuestion.table = team.location;
-            }
-
-            Question.findOneAndUpdate({}, newQuestion, {upsert: true}, function (err, resp) {
-                console.log('Created question:  ', resp, err, newQuestion);
-                if (callback) {
-                    callback(err, resp);
+                if (team) {
+                    newQuestion.team = team.name;
+                    newQuestion.table = team.location;
                 }
+
+                Question.findOneAndUpdate({}, newQuestion, {upsert: true}, function (err, resp) {
+                    console.log('Created question:  ', resp, err, newQuestion);
+                    if (callback) {
+                        callback(err, resp);
+                    }
+                });
             });
-        });
+        }
 
     });
 

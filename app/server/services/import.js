@@ -107,6 +107,8 @@ controller.importFromUrl = function (url) {
                 declined: false,
                 checkedIn: true
             };
+
+
             var u = new User();
             u.ticketId = item.ticket_id.toLowerCase();
             u.ticketType = item.ticket_name;

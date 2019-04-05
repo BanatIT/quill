@@ -106,10 +106,7 @@ module.exports = function (router) {
             if (err || !user) {
                 return res.status(500).send(err);
             }
-
-
             return user._id;
-
         })
     }
 
@@ -187,9 +184,11 @@ module.exports = function (router) {
     });
 
     router.put('/questions/ask', function (req, res) {
-        var userId = req.params.id;
-        var value = req.body.value;
-        QuestionsController.create(userId, value, defaultResponse(req, res));
+        var token = getToken(req);
+        UserController.getByToken(token, function (err, user) {
+            var value = req.body.value;
+            QuestionsController.create(user._id, value, defaultResponse(req, res));
+        });
     });
 
     router.put('/questions/mark', isOwnerOrAdmin, function (req, res) {
@@ -198,8 +197,10 @@ module.exports = function (router) {
     });
 
     router.get('/questions/mine', function (req, res) {
-        var userId = req.params.id;
-        QuestionsController.findMine(userId,defaultResponse(req, res));
+        var token = getToken(req);
+        UserController.getByToken(token, function (err, user) {
+            QuestionsController.findMine(user._id,defaultResponse(req, res));
+        });
     });
 
     router.get('/questions/all', function (req, res) {
