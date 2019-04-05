@@ -7,7 +7,7 @@ angular.module('reg')
             $scope.questions = [];
             console.log('get open help questions');
             QuestionService.open().then(function (res) {
-                $scope.questions = res;
+                $scope.questions = res.data;
             });
 
 

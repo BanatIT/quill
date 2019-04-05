@@ -14,7 +14,6 @@ angular.module('reg')
             $scope.submitQuestion = function () {
                 if ($scope.help && $scope.help.length > 0) {
                     QuestionService.create($scope.help).then(function (res) {
-                        $scope.questions = res;
                         console.log('created new question', res);
                         loadQuestions();
                     });
@@ -25,7 +24,7 @@ angular.module('reg')
 
             function loadQuestions(){
                 QuestionService.mine().then(function (res) {
-                    $scope.questions = res;
+                    $scope.questions = res.data;
                     console.log('got questions', res);
                 });
             }

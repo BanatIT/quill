@@ -8,7 +8,7 @@ angular.module('reg')
 
             console.log('get all help questions');
             QuestionService.all().then(function (res) {
-                $scope.questions = res;
+                $scope.questions = res.data;
             });
 
 
