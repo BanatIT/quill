@@ -92,14 +92,9 @@ UserController.loginWithPassword = function(email, password, callback){
     });
   }
 
-  if (!validator.isEmail(email)){
-    return callback({
-      message: 'Invalid email'
-    });
-  }
 
   User
-    .findOneByEmail(email)
+    .findOneByEmailOrTicketNumber(email)
     .select('+password')
     .exec(function(err, user){
       if (err) {

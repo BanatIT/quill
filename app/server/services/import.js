@@ -108,7 +108,7 @@ controller.importFromUrl = function (url) {
                 checkedIn: true
             };
             var u = new User();
-            u.ticketId = item.ticket_id;
+            u.ticketId = item.ticket_id.toLowerCase();
             u.ticketType = item.ticket_name;
             u.email = _getValue(attendeeData, 'e-mail-address').trim().toLowerCase();
             u.password = User.generateHash(item.security_code);
