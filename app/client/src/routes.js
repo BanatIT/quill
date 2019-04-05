@@ -192,22 +192,25 @@ angular.module('reg')
                     controller: 'VoteCtrl'
                 })
                 .state('app.help.', {
-                    url: "/help",
-                    templateUrl: "views/help/help.html",
-                    controller: 'HelpCtrl'
+                    views: {
+                        '': {
+                            templateUrl: "views/help/help.html",
+                            controller: 'HelpCtrl'
+                        }
+                    }
                 })
                 .state('app.help.mine', {
-                    url: "/help/mine",
+                    url: "/help",
                     templateUrl: "views/help/mine/my-questions.html",
                     controller: 'MyHelpCtrl'
                 })
                 .state('app.help.open', {
-                    url: "/help/mine",
+                    url: "/help-mine",
                     templateUrl: "views/help/open/open-questions.html",
                     controller: 'OpenHelpCtrl'
                 })
                 .state('app.help.all', {
-                    url: "/help/all",
+                    url: "/help-all",
                     templateUrl: "views/help/all/all-questions.html",
                     controller: 'AllHelpCtrl'
                 });
