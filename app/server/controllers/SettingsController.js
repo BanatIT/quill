@@ -48,7 +48,7 @@ SettingsController.wipe = function (callback) {
     });
     Team.remove({}, function () {
     });
-    User.remove({}, function () {
+    User.remove({ email : { $ne: process.env.ADMIN_EMAIL } } , function () {
     });
     callback(null, {message: 'success'});
 

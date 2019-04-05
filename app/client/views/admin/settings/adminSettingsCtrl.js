@@ -6,7 +6,7 @@ angular.module('reg')
         function ($scope, $sce, SettingsService) {
 
             $scope.settings = {};
-            $scope.wipe = { value : 'Enter "WIPE" and submit'};
+            $scope.wipeModel = { value : 'Enter "WIPE" and submit'};
 
             SettingsService
                 .getPublicSettings()
@@ -20,9 +20,9 @@ angular.module('reg')
             }
 
             $scope.wipe = function () {
-                if ("WIPE" === $scope.wipe.value) {
+                if ("WIPE" === $scope.wipeModel.value) {
                     SettingsService.wipe().success(function () {
-                        $scope.wipe.value = 'Enter "WIPE" and submit';
+                        $scope.wipeModel.value = 'Enter "WIPE" and submit';
                         swal("Looks good!", "Everything has been wiped clean!", "success");
                     });
                 } else {
