@@ -3,7 +3,29 @@
         Ask a Question
     </div>
 
-    <div class="ui stackable centered page grid" ng-if="ready">
+    <div class="ui three item menu">
+        <a
+                class="item"
+                ui-sref="app.help.mine"
+                ui-sref-active="active">
+            My Questions
+        </a>
+
+        <a
+                class="item"
+                ui-sref="app.help.open"
+                ui-sref-active="active">
+            All Open Questions
+        </a>
+
+        <a
+                class="item"
+                ui-sref="app.help.all"
+                ui-sref-active="active">
+            All Questions
+        </a>
 
     </div>
+    <!-- View for admin panel content -->
+    <ui-view></ui-view>
 </div>
