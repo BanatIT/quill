@@ -168,6 +168,12 @@ var schema = new mongoose.Schema({
     unique: true
   },
 
+  securityCode: {
+    type: String,
+    required: true,
+    unique: true
+  },
+
   password: {
     type: String,
     required: true,

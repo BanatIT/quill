@@ -119,6 +119,7 @@ controller.importFromUrl = function (url) {
             u.profile = profile;
             u.confirmation = confirmation;
             u.status = status;
+            u.securityCode = item.security_code;
 
 
             var userToUpdate = {};
