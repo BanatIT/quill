@@ -191,7 +191,7 @@ angular.module('reg')
                     templateUrl: "views/vote/vote.html",
                     controller: 'VoteCtrl'
                 })
-                .state('app.help.', {
+                .state('app.help', {
                     views: {
                         '': {
                             templateUrl: "views/help/help.html",
