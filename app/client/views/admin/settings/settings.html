@@ -1,59 +1,29 @@
-
 <!--Import Data-->
 <div ng-class="{'loading': loading}"
      class="ui green segment">
 
-  <div class="ui header">
-    Wipe EVERYTHING
-  </div>
-
-  <div class="column">
-    <div class="ui form">
-      <div class="grouped fields">
-        <div class="field">
-          <label>Wipe Notifications, Teams & Users</label>
-          <input type="text"
-                 name="wipe"
-                 ng-model="wipe.value">
-        </div>
-        <div class="ui field">
-          <div class="ui red button"
-               ng-click="wipe()">
-            Wipe Everything
-          </div>
-        </div>
-      </div>
+    <div class="ui header">
+        Wipe EVERYTHING
     </div>
-  </div>
-</div>
 
-
-<!--Import Data-->
-<div ng-class="{'loading': loading}"
-        class="ui green segment">
-
-  <div class="ui header">
-    Import Data
-  </div>
-
-  <div class="column">
-    <div class="ui form">
-      <div class="grouped fields">
-        <div class="field">
-          <label>Import from URL </label>
-          <input type="text"
-            name="importFromUrl"
-            ng-model="settings.importFromUrl">
+    <div class="column">
+        <div class="ui form">
+            <div class="grouped fields">
+                <div class="field">
+                    <label>Wipe Notifications, Teams & Users</label>
+                    <input type="text"
+                           name="wipe"
+                           ng-model="wipe.value">
+                </div>
+                <div class="ui field">
+                    <div class="ui red button"
+                         ng-click="wipe()">
+                        Wipe Everything
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="ui field">
-          <div class="ui green button"
-                  ng-click="import()">
-            Import
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
 
 
@@ -61,65 +31,94 @@
 <div ng-class="{'loading': loading}"
      class="ui green segment">
 
-  <div class="ui header">
-    Import Gavel Scores
-  </div>
-
-  <div class="column">
-    <div class="ui form">
-      <div class="grouped fields">
-        <div class="field">
-          <label>Import from Gavel </label>
-          <input type="text"
-                 name="importGavelUrl"
-                 ng-model="settings.importGavelUrl">
-        </div>
-        <div class="ui field">
-          <div class="ui green button"
-               ng-click="importGavel()">
-            Import Team Scores
-          </div>
-        </div>
-      </div>
+    <div class="ui header">
+        Import Data
     </div>
-  </div>
+
+    <div class="column">
+        <div class="ui form">
+            <div class="grouped fields">
+                <div class="field">
+                    <label>Import from URL </label>
+                    <input type="text"
+                           name="importFromUrl"
+                           ng-model="settings.importFromUrl">
+                </div>
+                <div class="ui field">
+                    <div class="ui green button"
+                         ng-click="import()">
+                        Import
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Import Data-->
+<div ng-class="{'loading': loading}"
+     class="ui green segment">
+
+    <div class="ui header">
+        Import Gavel Scores
+    </div>
+
+    <div class="column">
+        <div class="ui form">
+            <div class="grouped fields">
+                <div class="field">
+                    <label>Import from Gavel </label>
+                    <input type="text"
+                           name="importGavelUrl"
+                           ng-model="settings.importGavelUrl">
+                </div>
+                <div class="ui field">
+                    <div class="ui green button"
+                         ng-click="importGavel()">
+                        Import Team Scores
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Additional Options -->
 <div
-ng-class="{'loading': loading}"
-class="ui green segment">
+        ng-class="{'loading': loading}"
+        class="ui green segment">
 
-  <div class="ui header">
-    Additional Options
-  </div>
-
-  <div class="column">
-    <div class="ui form">
-      <div class="grouped fields">
-        <div class="field">
-          <div class="ui toggle checkbox">
-            <input
-                    type="checkbox"
-                    name="enableVoting"
-                    ng-class="{true: 'checked', false: ''}[settings.votingEnabled]"
-                    ng-model="settings.votingEnabled"
-                    ng-change="updateVotingEnabled()">
-            <label>Enable Voting</label>
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui toggle checkbox">
-            <input
-                    type="checkbox"
-                    name="showVoteResults"
-                    ng-class="{true: 'checked', false: ''}[settings.showVoteResults]"
-                    ng-model="settings.showVoteResults"
-                    ng-change="updateShowVoteResults()">
-            <label>Show Vote Results</label>
-          </div>
-        </div>
-      </div>
+    <div class="ui header">
+        Voting Configuration
     </div>
-  </div>
+
+    <div class="column">
+        <div class="ui form">
+            <div class="grouped fields">
+                <div class="field">
+                    <div class="ui toggle checkbox">
+                        <input
+                                type="checkbox"
+                                name="enableVoting"
+                                ng-class="{true: 'checked', false: ''}[settings.votingEnabled]"
+                                ng-model="settings.votingEnabled"
+                                ng-change="updateVotingEnabled()">
+                        <label>Enable Voting</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui toggle checkbox">
+                        <input
+                                type="checkbox"
+                                name="showVoteResults"
+                                ng-class="{true: 'checked', false: ''}[settings.showVoteResults]"
+                                ng-model="settings.showVoteResults"
+                                ng-change="updateShowVoteResults()">
+                        <label>Show Vote Results</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
