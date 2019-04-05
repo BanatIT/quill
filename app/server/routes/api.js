@@ -1,4 +1,5 @@
 var UserController = require('../controllers/UserController');
+var QuestionsController = require('../controllers/QuestionsController');
 var SettingsController = require('../controllers/SettingsController');
 var TeamController = require('../controllers/TeamController');
 var NotificationController = require('../controllers/NotificationController');
@@ -53,10 +54,10 @@ module.exports = function (router) {
 
     function isExternalToken(req, res, next) {
 
-        if(req && req.body && req.body.api_key){
-            if(req.body.api_key === 'vladIsCool'){
+        if (req && req.body && req.body.api_key) {
+            if (req.body.api_key === 'vladIsCool') {
                 return next();
-            }else{
+            } else {
                 return res.status(401).send({
                     message: 'Invalid API Key'
                 });
@@ -128,16 +129,16 @@ module.exports = function (router) {
                                 form: {
                                     payload: JSON.stringify({
                                         "text":
-                                        "``` \n" +
-                                        "Request: \n " +
-                                        req.method + ' ' + req.url +
-                                        "\n ------------------------------------ \n" +
-                                        "Body: \n " +
-                                        JSON.stringify(req.body, null, 2) +
-                                        "\n ------------------------------------ \n" +
-                                        "\nError:\n" +
-                                        JSON.stringify(err, null, 2) +
-                                        "``` \n"
+                                            "``` \n" +
+                                            "Request: \n " +
+                                            req.method + ' ' + req.url +
+                                            "\n ------------------------------------ \n" +
+                                            "Body: \n " +
+                                            JSON.stringify(req.body, null, 2) +
+                                            "\n ------------------------------------ \n" +
+                                            "\nError:\n" +
+                                            JSON.stringify(err, null, 2) +
+                                            "``` \n"
                                     })
                                 }
                             },
@@ -182,6 +183,30 @@ module.exports = function (router) {
             UserController.getAll(defaultResponse(req, res));
 
         }
+    });
+
+    router.put('/questions/ask', function (req, res) {
+        var userId = req.params.id;
+        var value = req.body.value;
+        QuestionsController.create(userId, value, defaultResponse(req, res));
+    });
+
+    router.put('/questions/mark', isOwnerOrAdmin, function (req, res) {
+        var qid = req.body.questionId;
+        QuestionsController.mark(qid, defaultResponse(req, res));
+    });
+
+    router.get('/questions/mine', function (req, res) {
+        var userId = req.params.id;
+        QuestionsController.findMine(userId,defaultResponse(req, res));
+    });
+
+    router.get('/questions/all', function (req, res) {
+        QuestionsController.findAll(defaultResponse(req, res));
+    });
+
+    router.get('/questions/open', function (req, res) {
+        QuestionsController.findOpen(defaultResponse(req, res));
     });
 
     /**
@@ -253,8 +278,8 @@ module.exports = function (router) {
     /**
      * Update a teamcode. Join/Create a team here.
      * {
-   *   code: STRING
-   * }
+     *   code: STRING
+     * }
      */
     router.put('/users/:id/team', isOwnerOrAdmin, function (req, res) {
         var code = req.body.code;
@@ -276,9 +301,9 @@ module.exports = function (router) {
     /**
      * Update a user's password.
      * {
-   *   oldPassword: STRING,
-   *   newPassword: STRING
-   * }
+     *   oldPassword: STRING,
+     *   newPassword: STRING
+     * }
      */
     router.put('/users/:id/password', isOwnerOrAdmin, function (req, res) {
         return res.status(304).send();
@@ -395,7 +420,7 @@ module.exports = function (router) {
     });
 
 
-    router.get('/vote/teams/admin',isAdmin, function (req, res) {
+    router.get('/vote/teams/admin', isAdmin, function (req, res) {
         TeamController.getVoteCount(defaultResponse(req, res), true);
     });
 
@@ -432,13 +457,13 @@ module.exports = function (router) {
     /**
      * Get the public settings.
      * res: {
-   *   timeOpen: Number,
-   *   timeClose: Number,
-   *   timeToConfirm: Number,
-   *   acceptanceText: String,
-   *   confirmationText: String,
-   *   allowMinors: Boolean
-   * }
+     *   timeOpen: Number,
+     *   timeClose: Number,
+     *   timeToConfirm: Number,
+     *   acceptanceText: String,
+     *   confirmationText: String,
+     *   allowMinors: Boolean
+     * }
      */
     router.get('/settings', function (req, res) {
         SettingsController.getPublicSettings(defaultResponse(req, res));
@@ -491,7 +516,7 @@ module.exports = function (router) {
     });
 
 
-    router.post('/cash',isExternalToken, function (req, res) {
+    router.post('/cash', isExternalToken, function (req, res) {
         return res.json(req.body);
     });
 };
