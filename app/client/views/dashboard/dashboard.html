@@ -6,8 +6,14 @@
         <div class="column">
             <div class="row ui segment">
                 <div class="divided title">
-                    Checklist
+                    Important Information
                 </div>
+
+                <a class="item" >
+                    <strong>Wifi</strong><br>
+                    SID: HackTM Oradea <br>
+                    Password: welcome2hacktm<br>
+                </a>
 
                 <div class="field">
                     <div class="ui checkbox">
@@ -22,7 +28,7 @@
                 <div class="divided title">
                     Notifications
                 </div>
-                <div class="ui divided list fixed-height-200">
+                <div class="ui divided list fixed-height-400">
                     <a class="item" ng-repeat="notification in notifications|limitTo:20">
                         <span class="small">{{ fromNow(notification.timestamp) }}</span>
                         <strong>{{ notification.title }}</strong><br>
@@ -31,6 +37,21 @@
 
                 </div>
             </div>
+            <br>
+            <div class="row ui segment">
+                <div class="divided title">
+                    Checklist
+                </div>
+
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" name="example" disabled ng-model="hasTeam">
+                        <label>Joined or created a team</label>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
 
     </div>
