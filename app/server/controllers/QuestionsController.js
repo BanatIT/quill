@@ -19,7 +19,6 @@ QuestionsController.create = function (userId, value, callback) {
             if (team) {
                 newQuestion.team = team.name;
                 newQuestion.table = team.location;
-
             }
 
             Question.findOneAndUpdate({}, newQuestion, {upsert: true}, function (err, resp) {
