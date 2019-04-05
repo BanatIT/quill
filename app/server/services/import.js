@@ -131,10 +131,9 @@ controller.importFromUrl = function (url) {
             }, userToUpdate, {upsert: true}, function (err, res) {
                 if (err) {
                     noError++;
-                    console.error('Cound not insert or update: ', userToUpdate.email, userToUpdate.ticketId);
-                }else {
-                    noOfimports++;
+                    console.error('Cound not insert or update: ',err, userToUpdate.email, userToUpdate.ticketId);
                 }
+                noOfimports++;
 
             });
 
