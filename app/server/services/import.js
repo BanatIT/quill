@@ -131,9 +131,10 @@ controller.importFromUrl = function (url) {
             }, userToUpdate, {upsert: true}, function (err, res) {
                 if (err) {
                     noError++;
-                    console.error('Cound not insert or update: ',err, userToUpdate.email, userToUpdate.ticketId);
+                    console.error('Cound not insert or update: ', err, userToUpdate.email, userToUpdate.ticketId);
+                } else {
+                    noOfimports++;
                 }
-                noOfimports++;
 
             });
 
@@ -163,7 +164,10 @@ controller.importFromUrl = function (url) {
         console.log('Skiped ' + noSecurityCode + ' because of missing security code');
         console.log('Skiped ' + noTicketId + ' because of missing ticketId');
         console.log('Skiped ' + noError + ' because of error');
-        console.log('No of imports:' + noOfimports);
+        setTimeout(function () {
+            console.log('No of imports:' + noOfimports);
+        }, 5000);
+
     });
 };
 
