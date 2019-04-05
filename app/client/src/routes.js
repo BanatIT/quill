@@ -200,12 +200,12 @@ angular.module('reg')
                     }
                 })
                 .state('app.help.mine', {
-                    url: "/help",
+                    url: "/help-mine",
                     templateUrl: "views/help/mine/my-questions.html",
                     controller: 'MyHelpCtrl'
                 })
                 .state('app.help.open', {
-                    url: "/help-mine",
+                    url: "/help-open",
                     templateUrl: "views/help/open/open-questions.html",
                     controller: 'OpenHelpCtrl'
                 })
