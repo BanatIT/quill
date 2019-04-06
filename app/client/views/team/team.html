@@ -1,170 +1,158 @@
-<div id="team" class="page">
-  <div class="divided title">
-    Team
-  </div>
-  <div class="ui stackable centered page grid" ng-show="isParticipant">
-    <div class="column">
-      <div
-        class="ui error message"
-        ng-show="error">
-        {{error}}
-      </div>
+<div id="map" class="page">
+    <div class="divided title">
+        Team
+    </div>
+    <div id="team" class="page">
+        <div class="ui stackable centered page grid" ng-show="isParticipant">
+            <div class="column">
+                <div
+                        class="ui error message"
+                        ng-show="error">
+                    {{error}}
+                </div>
 
-      <div class="ui segment">
+                <div class="ui segment">
 
 
-        <!-- Team data-->
-        <div class="ui form" >
+                    <!-- Team data-->
+                    <div class="ui form">
 
-          <div class="title">
-            Your Team
-          </div>
+                        <div class="title">
+                            Your Team
+                        </div>
 
-          <br>
+                        <br>
 
-          <div class="field">
-            <input
-              class="ui input"
-              type="text"
-              placeholder="Choose your team name..."
-              ng-model="team.name">
-          </div>
+                        <div class="field">
+                            <input
+                                    class="ui input"
+                                    type="text"
+                                    placeholder="Choose your team name..."
+                                    ng-model="team.name">
+                        </div>
 
-          <div class="field">
-            <input
-                    class="ui input"
-                    type="text"
-                    placeholder="Tell us your table number..."
-                    ng-model="team.location">
-          </div>
+                        <div class="field">
+                            <input
+                                    class="ui input"
+                                    type="text"
+                                    placeholder="Tell us your table number..."
+                                    ng-model="team.location">
+                        </div>
 
-          <div class="field">
+                        <div class="field">
             <textarea
                     class="ui input"
                     type="text"
                     ng-model="team.description">
             </textarea>
-          </div>
+                        </div>
 
-          <div ng-show="!user.teamCode">
-            <div class="field" >
-              <button
-                      class="ui fluid pink button"
-                      ng-click="createTeam()">
-                Create Team
-              </button>
-            </div>
-          </div>
+                        <div ng-show="!user.teamCode">
+                            <div class="field">
+                                <button
+                                        class="ui fluid pink button"
+                                        ng-click="createTeam()">
+                                    Create Team
+                                </button>
+                            </div>
+                        </div>
 
-          <div ng-show="user.teamCode && !isOwner">
-            <div class="field" >
-              <button
-                      class="ui fluid pink button"
-                      ng-click="leaveTeam()">
-                Leave Team
-              </button>
-            </div>
-          </div>
+                        <div ng-show="user.teamCode && !isOwner">
+                            <div class="field">
+                                <button
+                                        class="ui fluid pink button"
+                                        ng-click="leaveTeam()">
+                                    Leave Team
+                                </button>
+                            </div>
+                        </div>
 
-          <div ng-show="user.teamCode && isOwner" class="ui two column grid">
-            <div class="field column" >
-              <button
-                      class="ui fluid pink button"
-                      ng-click="updateTeam()">
-                Update Team
-              </button>
-            </div>
-            <div class="field column" >
-              <button
-                      class="ui fluid red button"
-                      ng-click="deleteTeam()">
-                Delete Team
-              </button>
-            </div>
+                        <div ng-show="user.teamCode && isOwner" class="ui two column grid">
+                            <div class="field column">
+                                <button
+                                        class="ui fluid pink button"
+                                        ng-click="updateTeam()">
+                                    Update Team
+                                </button>
+                            </div>
+                            <div class="field column">
+                                <button
+                                        class="ui fluid red button"
+                                        ng-click="deleteTeam()">
+                                    Delete Team
+                                </button>
+                            </div>
 
-          </div>
+                        </div>
+                    </div>
+                    <!-- end Team  data-->
+
+
+                    <div ng-show="user.teamCode">
+
+                        <div class="ui divider"></div>
+
+                        <div class="form">
+                            <div class="title">
+                                Your Team:
+                            </div>
+                        </div>
+
+                        <p
+                                ng-repeat="user in teammates"
+                                class="item">
+                            {{user.profile.name || 'Somebody (has not filled out their profile!)'}}
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
         </div>
-        <!-- end Team  data-->
+
+        <!-- Team list -->
+
+        <div class="ui stackable centered page grid">
+            <div class="column">
+                <div class="ui segment">
+
+                    <div class="ui form">
+                        <div class="field">
+                            <input
+                                    class="ui input"
+                                    type="text"
+                                    placeholder="Type to search team"
+                                    ng-model="query">
+                        </div>
+                    </div>
+
+                    <div class="ui divider"></div>
 
 
+                    <div class="ui accordion">
+                        <div ng-repeat="team in teams | filter:query">
+                            <div class="title " ng-class="team.active ? 'active': ''"
+                                 ng-click="team.active = !team.active">
+                                <div class="team-info">
+                                    <i class="dropdown icon "></i>
+                                    <span class="">{{team.name}} </span>
+                                    <span ng-show="team.location">(Table: {{team.location}})</span>
+                                </div>
+                                <button ng-show="!user.teamCode && isParticipant"
+                                        class="ui green button team-join"
+                                        ng-click="joinTeam(team._id)">
+                                    Join Team
+                                </button>
+                            </div>
+                            <div class="content" ng-class="team.active ? 'active': ''">
+                                <div>{{team.description}}</div>
+                            </div>
+                        </div>
+                    </div>
 
-        <div ng-show="user.teamCode" >
-
-          <div class="ui divider"></div>
-
-          <div class="form">
-            <div class="title">
-              Your Team:
+                </div>
             </div>
-          </div>
-
-          <p
-            ng-repeat="user in teammates"
-            class="item">
-            {{user.profile.name || 'Somebody (has not filled out their profile!)'}}
-          </p>
-
         </div>
-
-      </div>
     </div>
-  </div>
-
-  <!-- Team list -->
-
-  <div class="ui stackable centered page grid">
-    <div class="column">
-      <div class="ui segment">
-
-        <div class="ui form">
-          <div class="field">
-            <input
-                    class="ui input"
-                    type="text"
-                    placeholder="Type to search team"
-                    ng-model="query">
-          </div>
-        </div>
-
-        <div class="ui divider"></div>
-
-
-        <div class="ui accordion">
-          <div ng-repeat="team in teams | filter:query">
-            <div class="title " ng-class="team.active ? 'active': ''" ng-click="team.active = !team.active">
-              <div class="team-info">
-                <i class="dropdown icon "></i>
-                <span class="">{{team.name}} </span>
-                <span ng-show="team.location">(Table: {{team.location}})</span>
-              </div>
-              <button ng-show="!user.teamCode && isParticipant"
-                class="ui green button team-join"
-                ng-click="joinTeam(team._id)">
-                Join Team
-              </button>
-            </div>
-            <div class="content" ng-class="team.active ? 'active': ''">
-              <div>{{team.description}}</div>
-            </div>
-          </div>
-        </div>
-        <!--<div ng-repeat="team in teams | filter:query">-->
-          <!--<div class="ui grid">-->
-            <!--<div class="twelve wide column" >{{team.name}}</div>-->
-
-            <!--<div class="four wide column" >-->
-              <!--<button ng-show="!user.teamCode && isParticipant"-->
-                      <!--class="ui fluid green button"-->
-                      <!--ng-click="joinTeam(team._id)">-->
-                <!--Join Team-->
-              <!--</button>-->
-            <!--</div>-->
-        <!--</div>-->
-      </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- end Team list -->
 
 </div>
