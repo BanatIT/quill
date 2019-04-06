@@ -164,9 +164,6 @@ fieldset {
   text-align: center;
 }
 
-.ui.pink.button {
-  background-color: $secondary;
-}
 
 .ui.green.button {
   background-color: $green-1;
@@ -185,18 +182,18 @@ fieldset {
 }
 
 .ui.pink.button {
-  background-color: $secondary;
+  background-color: $primary;
 
   &:hover {
-    background-color: lighten($secondary, 3%);
+    background-color: lighten($primary, 3%);
   }
 
   &:active {
-    background-color: darken($secondary, 3%);
+    background-color: darken($primary, 3%);
   }
 
   &:focus {
-    background-color: $secondary;
+    background-color: $primary;
   }
 }
 
