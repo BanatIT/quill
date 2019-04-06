@@ -166,7 +166,7 @@ module.exports = function (router) {
         });
     });
 
-    router.put('/questions/mark', isOwnerOrAdmin, function (req, res) {
+    router.put('/questions/mark', function (req, res) {
         var qid = req.body.questionId;
         QuestionsController.mark(qid, defaultResponse(req, res));
     });
