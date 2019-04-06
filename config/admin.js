@@ -3,6 +3,7 @@ ADMIN_PASSWORD = process.env.ADMIN_PASS;
 
 // Create a default admin user.
 var User = require('../app/server/models/User');
+var Question = require('../app/server/models/Question');
 
 
 var user = {};
@@ -17,6 +18,9 @@ User.findOneAndUpdate({
     console.log('Admin User Status: ', user, err);
 });
 
+
+Question.remove({} , function () {
+});
 
 // custom users
 

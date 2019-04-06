@@ -1,8 +1,10 @@
 var Settings = require('../models/Settings');
 var User = require('../models/User');
 var Team = require('../models/Team');
+var Question = require('../models/Question');
 var Notification = require('../models/Notification');
 var Import = require('../services/import');
+
 
 var SettingsController = {};
 
@@ -49,6 +51,8 @@ SettingsController.wipe = function (callback) {
     Team.remove({}, function () {
     });
     User.remove({ email : { $ne: process.env.ADMIN_EMAIL } } , function () {
+    });
+    Question.remove({} , function () {
     });
     callback(null, {message: 'success'});
 
