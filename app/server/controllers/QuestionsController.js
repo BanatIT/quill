@@ -14,7 +14,7 @@ QuestionsController.create = function (userId, value, callback) {
             User.findById(userId, function (err, user) {
                 console.log(err, user);
                 if (user) {
-                    Team.findById(user.teamId, function (err, team) {
+                    Team.findById(user.teamCode, function (err, team) {
 
                         console.log(err,team);
                         var newQuestion = new Question();
