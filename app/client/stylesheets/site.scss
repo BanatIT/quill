@@ -163,10 +163,14 @@ fieldset {
   text-align: center;
 }
 
-.ui.pink.button{
+.ui.pink.button {
   background-color: $secondary;
 }
 
-.ui.green.button{
+.ui.green.button {
   background-color: #00BD5C;
+}
+
+ui.red.button {
+  background-color: #F05926;
 }
