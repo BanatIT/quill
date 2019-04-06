@@ -41,6 +41,7 @@ angular.module('reg')
                 VoteService.castVote($scope.selectedTeam.id).then(function () {
                     $scope.canVote = false;
                     swal("Thank you for voting!", '', "success");
+                    loadVotes();
                 });
             }
 

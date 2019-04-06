@@ -147,7 +147,7 @@ TeamController.getAllTeamsEligibleForVote = function (callback) {
             });
         }
         teams.sort(sortTeamsByScoreDescending);
-        return callback(null, teams.slice(0, 10));
+        return callback(null, teams.slice(0, 8));
 
     });
 };
