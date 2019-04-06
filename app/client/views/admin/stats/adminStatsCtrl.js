@@ -3,9 +3,35 @@ angular.module('reg')
         '$scope',
         'UserService',
         'VoteService',
-        function ($scope, UserService, VoteService) {
+        'TeamService',
+        function ($scope, UserService, VoteService, TeamService) {
 
             $scope.teams = [];
+
+            $scope.teamStats = {};
+            $scope.usersWithNoTeam = [];
+
+            TeamService.getAll().then(function (teams) {
+                $scope.teams = teams;
+                UserService.getAll().then(function (users) {
+                    users.forEach(function (user) {
+                        var matched = false;
+                        for (var i = 0; i < $scope.teams.length; i++) {
+                            var team = $scope.teams[i];
+                            if (team._id === user.teamCode) {
+                                matched = true;
+                                if (!team.members) {
+                                    team.members = [];
+                                }
+                                team.members.push(user.email + " (" + user.profile.name + ")");
+                            }
+                        }
+                        if (!matched) {
+                            $scope.usersWithNoTeam.push(user.email + " (" + user.profile.name + ")");
+                        }
+                    });
+                });
+            });
 
             UserService
                 .getStats()
