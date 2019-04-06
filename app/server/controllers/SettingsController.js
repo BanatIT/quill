@@ -65,8 +65,8 @@ SettingsController.resetScores = function (callback) {
         console.log(err,resp);
     });
     Team.update({}, {votes: 0, gavelScore: 0, totalScore: 0}, {multi: true}, function (err,resp) {
-        console.log(err,resp);
-
+        console.log(err, resp);
+    });
     callback(null, {message: 'success'});
 
 };
