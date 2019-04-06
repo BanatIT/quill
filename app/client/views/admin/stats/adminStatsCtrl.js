@@ -13,13 +13,13 @@ angular.module('reg')
 
             TeamService.getAll().then(function (teams) {
                 console.log(teams);
-                $scope.teams = teams.data;
+                $scope.teamStats = teams.data;
                 UserService.getAll().then(function (users) {
                     console.log(users);
                     users.data.forEach(function (user) {
                         var matched = false;
-                        for (var i = 0; i < $scope.teams.length; i++) {
-                            var team = $scope.teams[i];
+                        for (var i = 0; i < $scope.teamStats.length; i++) {
+                            var team = $scope.teamStats[i];
                             if (team._id === user.teamCode) {
                                 matched = true;
                                 if (!team.members) {
