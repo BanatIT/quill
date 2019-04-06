@@ -2,10 +2,12 @@ angular.module('reg')
     .controller('OpenHelpCtrl', [
         '$scope',
         'QuestionService',
-        function ($scope, QuestionService) {
+        '$rootScope',
+        function ($scope, QuestionService, $rootScope) {
 
             $scope.questions = [];
             $scope.ready = false;
+            var user = $rootScope.currentUser;
 
             loadQuestions();
 

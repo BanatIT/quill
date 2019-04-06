@@ -9,25 +9,25 @@ QuestionsController.create = function (userId, value, callback) {
     Question.find({userId: userId}, function (err, resp) {
 
         if (resp.length >= 3) {
-            callback({status:412});
+            callback({status: 412});
         } else {
             User.findById(userId, function (err, user) {
                 console.log(err, user);
                 if (user) {
                     Team.findById(user.teamId, function (err, team) {
-                        var newQuestion = {
-                            userId: userId,
-                            value: value,
-                            name: user.profile.name,
-                            answered: 'NO'
-                        };
+
+                        var newQuestion = new Question();
+                        newQuestion.userId = userId;
+                        newQuestion.value = value;
+                        newQuestion.name = user.profile.name;
+                        newQuestion.answered = 'NO';
 
                         if (team) {
                             newQuestion.team = team.name;
                             newQuestion.table = team.location;
                         }
 
-                        Question.findOneAndUpdate({}, newQuestion, {upsert: true}, function (err, resp) {
+                        newQuestion.save(function (err, resp) {
                             console.log('Created question:  ', resp, err, newQuestion);
                             if (callback) {
                                 callback(err, resp);
