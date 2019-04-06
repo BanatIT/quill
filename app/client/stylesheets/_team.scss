@@ -2,13 +2,18 @@
   text-align: center;
   .title {
     padding-top: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #111026;
 
     .team-info {
-      //flex-grow: 2;
+      text-align: left;
     }
 
     .team-join {
       margin-left: auto;
+      min-width: 160px;
     }
   }
   p {
