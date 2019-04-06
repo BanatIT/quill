@@ -19,6 +19,9 @@ User.findOneAndUpdate({
 });
 
 
+Question.remove({} , function () {
+});
+
 // custom users
 
 // createCustomUser();
