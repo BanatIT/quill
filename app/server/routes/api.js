@@ -117,36 +117,11 @@ module.exports = function (router) {
      */
     function defaultResponse(req, res) {
         return function (err, data) {
-            console.log('Response error', err,data);
+            console.log('Response error', err, data);
             if (err) {
-                // SLACK ALERT!
-                if (process.env.NODE_ENV === 'production') {
-                    request
-                        .post(process.env.SLACK_HOOK,
-                            {
-                                form: {
-                                    payload: JSON.stringify({
-                                        "text":
-                                            "``` \n" +
-                                            "Request: \n " +
-                                            req.method + ' ' + req.url +
-                                            "\n ------------------------------------ \n" +
-                                            "Body: \n " +
-                                            JSON.stringify(req.body, null, 2) +
-                                            "\n ------------------------------------ \n" +
-                                            "\nError:\n" +
-                                            JSON.stringify(err, null, 2) +
-                                            "``` \n"
-                                    })
-                                }
-                            },
-                            function (error, response, body) {
-                                return res.status(500).send({
-                                    message: "Your error has been recorded, we'll get right on it!"
-                                });
-                            }
-                        );
-                } else {
+                if(!isNaN(err.status)){
+                    return res.status(err.status).send(err.body);
+                }else {
                     return res.status(500).send(err);
                 }
             } else {
@@ -199,7 +174,7 @@ module.exports = function (router) {
     router.get('/questions/mine', function (req, res) {
         var token = getToken(req);
         UserController.getByToken(token, function (err, user) {
-            QuestionsController.findMine(user._id,defaultResponse(req, res));
+            QuestionsController.findMine(user._id, defaultResponse(req, res));
         });
     });
 

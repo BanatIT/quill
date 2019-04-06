@@ -18,7 +18,7 @@ angular.module('reg')
                         console.log('created new question', res);
                         loadQuestions();
                     }, function errorCallback(response) {
-                        if (response.status === 400) {
+                        if (response.status === 412) {
                             swal("Error!", "You can't have more than 3 open questions", "error");
                         } else {
                             swal("Error!", "Failed to post question", "error");

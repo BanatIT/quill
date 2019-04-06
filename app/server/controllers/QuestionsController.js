@@ -5,36 +5,41 @@ var Team = require('../models/Team');
 var QuestionsController = {};
 
 QuestionsController.create = function (userId, value, callback) {
-
     console.log(userId);
-    User.findById(userId, function (err, user) {
+    Question.find({userId: userId}, function (err, resp) {
 
-        console.log(err, user);
-        if(user) {
-            Team.findById(user.teamId, function (err, team) {
-                var newQuestion = {
-                    userId: userId,
-                    value: value,
-                    name: user.profile.name,
-                    answered: 'NO'
-                };
+        if (resp.length >= 3) {
+            callback({status:412});
+        } else {
+            User.findById(userId, function (err, user) {
+                console.log(err, user);
+                if (user) {
+                    Team.findById(user.teamId, function (err, team) {
+                        var newQuestion = {
+                            userId: userId,
+                            value: value,
+                            name: user.profile.name,
+                            answered: 'NO'
+                        };
 
-                if (team) {
-                    newQuestion.team = team.name;
-                    newQuestion.table = team.location;
+                        if (team) {
+                            newQuestion.team = team.name;
+                            newQuestion.table = team.location;
+                        }
+
+                        Question.findOneAndUpdate({}, newQuestion, {upsert: true}, function (err, resp) {
+                            console.log('Created question:  ', resp, err, newQuestion);
+                            if (callback) {
+                                callback(err, resp);
+                            }
+                        });
+                    });
                 }
 
-                Question.findOneAndUpdate({}, newQuestion, {upsert: true}, function (err, resp) {
-                    console.log('Created question:  ', resp, err, newQuestion);
-                    if (callback) {
-                        callback(err, resp);
-                    }
-                });
             });
+
         }
-
     });
-
 };
 
 QuestionsController.mark = function (questionId, callback) {
