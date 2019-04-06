@@ -2,24 +2,27 @@
     <div class="ui header">
         Open Requests
     </div>
-    <p ng-show="questions.length === 0 && ready">There are no open questions</p>
+    <p ng-show="questions.length === 0 && ready">There are no open requests</p>
     <div id="notification" class="row ui segment form" ng-show="questions.length >0 && ready">
         <div class="ui divided list">
-            <div>
-                <strong>{{ question.value }}</strong><br>
-                Asked by:
-                {{ question.name }}
-                <span ng-show="question.team"> / {{ question.team }}
-                        <span ng-show="question.table"> at table {{ question.table }} </span>
+            <a class="item" ng-repeat="question in questions">
+                <div>
+                    <strong>{{ question.value }}</strong><br>
+                    <span ng-show="question.name">Asked by:
+                    {{ question.name }}
+                    <span ng-show="question.team"> / {{ question.team }}
+                            <span ng-show="question.table"> at table {{ question.table }} </span>
+                        </span>
                     </span>
-                <br>
-                <div class="ui field">
-                    <div class="ui green button"
-                         ng-click="mark(question)">
-                        Mark as solved
+                    <br>
+                    <div class="ui field">
+                        <div class="ui green button"
+                             ng-click="mark(question)">
+                            Mark as solved
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </div>
