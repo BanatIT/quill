@@ -18,7 +18,8 @@ $status-checkedin-color: $secondary;
 $status-waitlist-color: $tertiary;
 $status-declined-color: $tertiary;
 $status-rejected-color: red; // Not used
-
+$green-1: #00BD5C;
+$red-1: #F05926;
 // Sidebar variables
 $sidebar-color: $primary;
 $sidebar-width: 265px;
@@ -168,9 +169,34 @@ fieldset {
 }
 
 .ui.green.button {
-  background-color: #00BD5C;
+  background-color: $green-1;
+
+  &:hover {
+    background-color: lighten($green-1, 3%);
+  }
+
+  &:active {
+    background-color: darken($green-1, 3%);
+  }
+
+  &:focus {
+    background-color: $green-1;
+  }
 }
 
 ui.red.button {
-  background-color: #F05926;
+
+  background-color: $red-1;
+
+  &:hover {
+    background-color: lighten($red-1, 3%);
+  }
+
+  &:active {
+    background-color: darken($red-1, 3%);
+  }
+
+  &:focus {
+    background-color: $red-1;
+  }
 }

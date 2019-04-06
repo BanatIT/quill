@@ -198,7 +198,7 @@ TeamController.getVoteCount = function (callback, admin) {
                         team.gavelScore = team.gavelScore / maxGavelScore;
                         team.totalScore = team.gavelScore + (votesForTeam / highestVoteScore);
                         team.totalScore *= 100;
-                        team.totalScore /=2;
+                        team.totalScore /= 2;
                         team.votes = votesForTeam;
                     });
 
