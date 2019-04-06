@@ -28,15 +28,26 @@
 
 <div class="ui green segment" ng-show="questions.length >0">
     <div class="ui header">
-        My Questions
+        My Requests
     </div>
 
     <div id="questions" class="row ui segment form" >
         <div class="ui divided list">
-            <a class="item" ng-repeat="question in questions">
+            <div><i class="green circle check icon" ng-show="question.answered === 'YES'"></i>
                 <strong>{{ question.value }}</strong><br>
-            </a>
-
+                Asked by:
+                {{ question.name }}
+                <span ng-show="question.team"> / {{ question.team }}
+                        <span ng-show="question.table"> at table {{ question.table }} </span>
+                    </span>
+                <br>
+                <div class="ui field">
+                    <div class="ui green button"
+                         ng-click="mark(question)">
+                        Mark as solved
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

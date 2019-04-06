@@ -20,7 +20,7 @@ User.findOneAndUpdate({
 
 // custom users
 
-createCustomUser();
+// createCustomUser();
 
 function createCustomUser() {
 
