@@ -6,9 +6,16 @@ angular.module('reg')
             var base = '/api/settings/';
 
             return {
+
+                resetScores: function(){
+                    return $http.put(base + 'reset-scores', {
+                    });
+                },
+
                 getPublicSettings: function () {
                     return $http.get(base);
                 },
+
                 updateRegistrationTimes: function (open, close) {
                     return $http.put(base + 'times', {
                         timeOpen: open,

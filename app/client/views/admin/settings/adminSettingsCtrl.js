@@ -6,7 +6,7 @@ angular.module('reg')
         function ($scope, $sce, SettingsService) {
 
             $scope.settings = {};
-            $scope.wipeModel =  'Enter "WIPE" and submit';
+            $scope.wipeModel = 'Enter "WIPE" and submit';
 
             SettingsService
                 .getPublicSettings()
@@ -19,6 +19,7 @@ angular.module('reg')
                 $scope.settings = settings;
             }
 
+
             $scope.wipe = function () {
                 if ("WIPE" === $scope.wipeModel) {
                     SettingsService.wipe().success(function () {
@@ -28,6 +29,13 @@ angular.module('reg')
                 } else {
                     swal("Error!", "Safety: You cannot wipe without entering 'WIPE'!", "error");
                 }
+            };
+
+
+            $scope.resetScores = function () {
+                SettingsService.resetScores().success(function () {
+                    swal("Looks good!", "Vote and Gavel Scores wiped!", "success");
+                });
             };
 
 

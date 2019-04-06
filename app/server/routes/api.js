@@ -459,6 +459,10 @@ module.exports = function (router) {
         SettingsController.wipe(defaultResponse(req, res));
     });
 
+    router.put('/settings/reset-scores', isAdmin, function (req, res) {
+        SettingsController.resetScores(defaultResponse(req, res));
+    });
+
     router.put('/settings/vote-results', isAdmin, function (req, res) {
         var showVoteResults = req.body.showVoteResults;
         SettingsController.updateField('showVoteResults', showVoteResults, defaultResponse(req, res));

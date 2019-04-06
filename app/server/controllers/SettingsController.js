@@ -58,6 +58,17 @@ SettingsController.wipe = function (callback) {
 
 };
 
+
+SettingsController.resetScores = function (callback) {
+
+    User.update({}, {votedTeamId: null}, {multi: true});
+    Team.update({}, {votes: 0, gavelScore: 0, totalScore: 0}, {multi: true});
+
+    callback(null, {message: 'success'});
+
+};
+
+
 SettingsController.importGavel = function (url, callback) {
     Import.importGavel(url);
     callback(null, {message: 'success'})
