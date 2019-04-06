@@ -5,8 +5,7 @@
     <p ng-show="questions.length === 0 && ready">There are no open requests</p>
     <div id="notification" class="row ui segment form" ng-show="questions.length >0 && ready">
         <div class="ui divided list">
-            <a class="item" ng-repeat="question in questions">
-                <div>
+            <div class="item" ng-repeat="question in questions">
                     <strong>{{ question.value }}</strong><br>
                     <span ng-show="question.name">Asked by:
                     {{ question.name }}
@@ -21,8 +20,7 @@
                             Mark as solved
                         </div>
                     </div>
-                </div>
-            </a>
+            </div>
         </div>
     </div>
 </div>
