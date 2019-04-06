@@ -6,7 +6,7 @@ var QuestionsController = {};
 
 QuestionsController.create = function (userId, value, callback) {
     console.log(userId);
-    Question.find({userId: userId}, function (err, resp) {
+    Question.find({userId: userId, answered: 'NO'}, function (err, resp) {
 
         if (resp.length >= 3) {
             callback({status: 412});

@@ -37,7 +37,7 @@
                 <i class="green circle check icon inline-icon" ng-show="question.answered === 'YES'"></i>
                 <strong>{{ question.value }}</strong>
 
-                <div class="ui field">
+                <div class="ui field"  ng-show="question.answered === 'NO'">
                     <div class="ui green button"
                          ng-click="mark(question)">
                         Mark as solved
