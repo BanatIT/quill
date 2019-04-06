@@ -12,8 +12,10 @@ angular.module('reg')
             $scope.usersWithNoTeam = [];
 
             TeamService.getAll().then(function (teams) {
+                console.log(teams);
                 $scope.teams = teams;
                 UserService.getAll().then(function (users) {
+                    console.log(users);
                     users.forEach(function (user) {
                         var matched = false;
                         for (var i = 0; i < $scope.teams.length; i++) {
