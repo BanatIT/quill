@@ -184,7 +184,7 @@ fieldset {
   }
 }
 
-.ui.pink.button{
+.ui.pink.button {
   background-color: $secondary;
 
   &:hover {
@@ -215,4 +215,8 @@ ui.red.button {
   &:focus {
     background-color: $red-1;
   }
+}
+
+.inline-icon {
+  display: inline !important;
 }

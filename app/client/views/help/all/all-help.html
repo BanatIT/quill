@@ -6,7 +6,7 @@
     <div id="notification" class="row ui segment form" ng-show="questions.length >0 && ready">
         <div class="ui divided list">
             <div class="item" ng-repeat="question in questions">
-                <i class="green circle check icon" ng-show="question.answered === 'YES'"></i>
+                <i class="green circle check icon inline-icon" ng-show="question.answered === 'YES'"></i>
                 <strong>{{ question.value }}</strong><br>
                 <span ng-show="question.name">Asked by:
                     {{ question.name }}

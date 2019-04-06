@@ -34,15 +34,9 @@
     <div id="notification" class="row ui segment form">
         <div class="ui divided list">
             <div class="item" ng-repeat="question in questions">
-                <i class="green circle check icon" ng-show="question.answered === 'YES'"></i>
-                <strong>{{ question.value }}</strong><br>
-                <span ng-show="question.name">Asked by:
-                    {{ question.name }}
-                    <span ng-show="question.team"> / {{ question.team }}
-                            <span ng-show="question.table"> at table {{ question.table }} </span>
-                        </span>
-                    </span>
-                <br>
+                <i class="green circle check icon inline-icon" ng-show="question.answered === 'YES'"></i>
+                <strong>{{ question.value }}</strong>
+
                 <div class="ui field">
                     <div class="ui green button"
                          ng-click="mark(question)">
