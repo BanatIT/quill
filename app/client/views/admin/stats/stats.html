@@ -32,7 +32,7 @@
         <div class="content">
             <div class="ui list">
                 <div class="item" ng-repeat="team in teamStats">
-                    <div class="label"><strong>{{team.name}}: </strong>
+                    <div class="label"><strong>{{team.name +" (members: "+team.members.length +" )"}} : </strong>
                         {{team.members.join(", ")}}
                     </div>
                 </div>
