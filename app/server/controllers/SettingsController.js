@@ -50,9 +50,9 @@ SettingsController.wipe = function (callback) {
     });
     Team.remove({}, function () {
     });
-    User.remove({ email : { $ne: process.env.ADMIN_EMAIL } } , function () {
+    User.remove({email: {$ne: process.env.ADMIN_EMAIL}}, function () {
     });
-    Question.remove({} , function () {
+    Question.remove({}, function () {
     });
     callback(null, {message: 'success'});
 
@@ -61,8 +61,12 @@ SettingsController.wipe = function (callback) {
 
 SettingsController.resetScores = function (callback) {
 
-    User.update({}, {votedTeamId: null}, {multi: true});
-    Team.update({}, {votes: 0, gavelScore: 0, totalScore: 0}, {multi: true});
+    User.update({votedTeamId: null}, {multi: true}, function (err, resp) {
+        console.log(err, resp);
+    });
+    Team.update({votes: 0}, {gavelScore: 0}, {totalScore: 0}, {multi: true}, function (err, resp) {
+        console.log(err, resp);
+    });
 
     callback(null, {message: 'success'});
 
